@@ -21,14 +21,7 @@
     {% else %}
       "{{ site.url }}/images/{{ page.image.feature }}"
     {% endif %}
-  alt="{{ page.title }} feature image"
-  {% if page.image.width %}
-    width="{{ page.image.width }}"
-  {% end if %}
-  {% if page.image.height %}
-    width="{{ page.image.height }}"
-  {% end if %}
-  > <!-- close bracket of <image -->
+  alt="{{ page.title }} feature image"> <!-- close bracket of <image -->
   {% if page.image.credit %}
     <span class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></span>
   {% endif %}
@@ -40,6 +33,8 @@
     {% include _author-bio.html %}
   </div>
   <div id="index">
+    {{ content }}
+    
     <h3><a href="{{ site.url}}/posts/">Recent Posts</a></h3>
     {% for post in site.posts limit:5 %}    
     <article>

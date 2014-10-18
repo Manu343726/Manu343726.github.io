@@ -1,8 +1,8 @@
 # Site wide configuration
 
-title:            My site, my code, my thoughts
+title:            Home
 locale:           en_US
-url:              http://manu343726.github.io
+url:              http://localhost:4000
 
 
 # Jekyll configuration
