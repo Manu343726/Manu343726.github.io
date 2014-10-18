@@ -1,6 +1,6 @@
 # Site wide configuration
 
-title:            Site Title
+title:            My site, my code, my thoughts
 locale:           en_US
 url:              http://localhost:4000
 
@@ -26,11 +26,11 @@ kramdown:
 
 # Site owner
 owner:
-  name: Your Name
+  name: Manu Sánchez
   avatar: bio-photo.jpg
   bio: "Describe your self."
-  email: 
-  disqus-shortname: 
+  email: Manu343726.public@gmail.com
+  disqus-shortname: #username
   twitter: #username
   facebook: #username
   google:
