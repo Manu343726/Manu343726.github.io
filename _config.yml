@@ -33,7 +33,7 @@ owner:
   disqus-shortname: Manu343726
   twitter: Manu343726
   google:
-    plus: Manu Sánchez
+    plus: 107845857533682431783
     analytics: 
     verify: 
     ad-client: 
@@ -42,7 +42,6 @@ owner:
   github: Manu343726
   stackoverflow: 1609356/manu343726
   linkedin: Manu Sánchez
-  steam: Manu343726
 
 include: [".htaccess"]
 exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]

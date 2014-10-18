@@ -6,4 +6,5 @@ image:
   feature: mandelbrot.jpg
   credit: Manu Sánchez
   creditlink: http://manu343726.github.io
+  width: 1024
 ---
