@@ -1,25 +1,45 @@
 ---
 layout: page
-title: About the Theme
-tags: [about, Jekyll, theme, responsive]
+title: About me
+tags: [about]
 modified: 2014-08-08T20:53:07.573882-04:00
 comments: true
 image:
-  feature: sample-image-2.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  feature: spectrums.jpg
+  credit: Manu Sánchez	
+  creditlink: http://manu343726.github.io
 ---
 
-Minimal Mistakes is responsive Jekyll theme with large featured images and solid typography. As the name implies the styling is fairly minimal to make it easier for you to build on top of.
+I'm a programming passionate. Only that. Not a professional, not a guru, only one dev trying to learn more and more each day.
 
-## Minimal Mistakes is all about:
+## Why?
 
-* Responsive templates. Looking good on mobile, tablet, and desktop.
-* Gracefully degrading in older browsers. Compatible with Internet Explorer 8+ and all modern browsers. 
-* Minimal embellishments -- content first.
-* Optional large feature images for posts and pages.
-* Simple and clear permalink structure.
-* [Custom 404 page](http://mmistakes.github.io/minimal-mistakes/404.html) to get you started.
-* Support for Disqus Comments
+I don't remember a time when I have no access to a computer, even the earliest memories I can recall contain computers. An Intel 486? 
+I have to thank all this stuff to my parents, **I'm aware I was (And I'm) very lucky**.
+My childhood can be summarized in five points: Need For Speed III, Duke Nukem 3D, Age Of Empires, Sim City 3000, and Starcraft. I have never been a social guy, that
+kind of person who is full of friends, and everybody knows and respects. Since the begginning I have felt that loneliness could be a synonym of calm, instead of sadness. Well,
+thats a matter of each one, depends on each one experiences and feelings.   
+The fact is that I was cappable of spending many ours on the computer, mostly playing videogames, since nothing in the external (real) world was specially interesting. Thats even more true
+during school and high-school. There were a couple of true friends during that periods, but thats all. Reading was a good ally too, and still is.  
 
-<a markdown="0" href="{{ site.url }}/theme-setup" class="btn">Install Minimal Mistakes Theme</a>
+But sociality and friendship was not the problem, the problem was the so common and eternal feeling of ***"What the fuck I'm supposed to do here?"*** The point there was that I have no idea
+of what is the thing that identifies me, whats the thing I'm supposed to do better than the average person. Some people play soccer, others form a rock band, whoever knows. 
+Wasn't until the final years of high school I realized that programming could be the answer.
+
+I started programming during a software course on the (last?) year on the high school, such common course teaching Microsoft Word, Powerpoint, etc. But there was one interesting subject at the end of the year: Programming. 
+Programming! *"So this is how that programs are made? So cool!"* **This was my first reaction to Visual Basic 6**. Please don't leave this page after reading that, have some hope on me, ok?
+Yep, Visual Basic 6. But the thing worked, and I cannot stop programming! First was VB6, then VB.NET, later C#, and since three years full time C++. I really like it!
+
+## So... programming
+
+Programming includes some interesting fields: Algorithms, hardware design, operative systems, programming languages. The so called Computer Science. Each one of these fields should be known and understood correctly, not
+foccusing your interest only in one of them and rejecting the rest. This practice could generate some bias in your way to measure and see things when doing software engineering, some kind of this bias is so pretty common on
+the software engineering community.  
+People claiming at the benefits and advantages of Object Oriented Programming, the answer to all the questions on programming; people spending thousands of hours figuring out how cool the Big O notation is without realizing how
+the hardware (That thing where your programs are run) works, etc. I could be a bit biased from the "hardware and programming are what matters, stop doing all that math" thought, frankly. But at least be aware of your situation.
+
+I'm not going to provide a full list of best practices for Software Engineering here, I'm not the right person for that I think, nor throwing you two hundreds of facts and rules about good C++ programming tips, refer to the portfolio
+and the blog for that. What I want to do here is to encourage learing: **Please always stay tuned at the changes of the world and the community, be aware of the state-of-the-art of your preferred tools. Evolve. Don't get stuck on ideas
+and feelings that have become invalid even before I have born.** Its hard, I know. But try to accomplish this.  
+
+This web is only a site where compile all my research on that challenge, all my thoughts, experiments, projects, whatever related to programming I do to be sure I'm always right or at least on the right way. And of course if that's not the case, please notice me!
