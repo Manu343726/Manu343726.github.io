@@ -1,9 +1,9 @@
 ---
 layout: home
-excerpt: "A minimal Jekyll theme for your blog by designer Michael Rose."
-tags: [Jekyll, theme, responsive, blog, template]
+excerpt: "My portfolio and thoughts landing page. Here's where my crazy stuff is compiled."
+tags: [C++,metaprogramming,template-meta-programming]
 image:
-  feature: sample-image-1.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  feature: mandelbrot.jpg
+  credit: Manu Sánchez
+  creditlink: http://manu343726.github.io
 ---
