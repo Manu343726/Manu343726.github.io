@@ -7,4 +7,5 @@ image:
   credit: Manu Sánchez
   creditlink: http://manu343726.github.io
   width: 1024
+  height: 768
 ---
