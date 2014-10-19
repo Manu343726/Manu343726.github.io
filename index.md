@@ -2,7 +2,7 @@
 layout: home
 excerpt: "My portfolio and thoughts landing page. Here's where my crazy stuff is compiled."
 image:
-  feature: mandelbrot.jpg
+  //feature: mandelbrot.jpg
   credit: Manu Sánchez	
   creditlink: http://manu343726.github.io
 ---

@@ -32,20 +32,22 @@ Yep, Visual Basic 6. But the thing worked, and I cannot stop programming! First 
 
 ## So... programming
 
-Programming includes some interesting fields: Algorithms, hardware design, operative systems, programming languages. The so called Computer Science. Each one of these fields should be known and understood correctly, not
-foccusing your interest only in one of them and rejecting the rest. This practice could generate some bias in your way to measure and see things when doing software engineering, some kind of this bias is so pretty common on
+Programming includes some interesting fields: Algorithms, hardware design, operative systems, programming languages... The so called Computer Science. Each one of these fields should be known and understood correctly, not
+foccusing your interest only in one of them and rejecting the rest.  
+This practice could generate some bias in your way to measure and see things when doing software engineering, and in fact some kind of this bias is so pretty common on
 the software engineering community.  
-People claiming at the benefits and advantages of Object Oriented Programming, the answer to all the questions on programming; people spending thousands of hours figuring out how cool the Big O notation is without realizing how
-the hardware (That thing where your programs are run) works, etc. I could be a bit biased from the "hardware and programming are what matters, stop doing all that math" thought, frankly. But at least be aware of your situation.
 
-I'm not going to provide a full list of best practices for Software Engineering here (I'm not the right person for that, I think), nor throwing you two hundreds of facts and rules about good C++ programming tips (refer to the portfolio
+People claiming at the benefits and advantages of Object Oriented Programming, the answer to all the questions on programming; people spending thousands of hours figuring out how cool the Big O notation is without realizing how
+the hardware (That thing where your programs are run) works, etc. In my case, being frankly, I could be a bit biased with something in the way of "hardware and programming are what matters, stop doing all that math" . At least be aware of your situation.
+
+I'm not going to provide a full list of best practices for Software Engineering here (I'm not the right person for that, I think), nor throwing you two hundreds of facts and rules about good C++ programming (refer to the portfolio
 and the blog for that). What I want to do here is to encourage learning: **Please always stay tuned at the changes of the world and the community, be aware of the state-of-the-art of your preferred tools. Evolve. Don't get stuck on ideas
-and feelings that have become invalid even before I have born.** Its hard, I know. But try to accomplish this.  
+and feelings that have become invalid even before I was born.** Its hard, I know. But try to accomplish this.  
 
 This web is only a site where compile all my research on that challenge, all my thoughts, experiments, projects, whatever related to programming I do to be sure I'm always right or at least on the right way. And of course **if that's not the case, please notice me!**
 
 ## The challenge of a good looking site
 
 I'm not a web developer, I have little experience in web development. This site was built after two weeks of me forking jekyll themes and touching sass files in a random way. 
-I'm mostly happy with the result, but I know that could be improbed. I'm a C++ guy, so those HTML and CSS files are for me like what the libstdc++ sources cause to a newbbie C++
-programmer still fighting with `std::cin` and `std::cout`. Focus your attention in the content, instead of the container. *Oh, seems like I have learned some HTML jargon!*
+I'm mostly happy with the results, but I know it could be improved. I'm a C++ guy, note that those HTML and CSS files are for me like what the libstdc++ sources do to the mental health of a C++ newbbie still fighting with `std::cin` and `std::cout`.  
+Focus your attention in the content, instead of the container. *Oh, seems like I have learned some HTML jargon!*
