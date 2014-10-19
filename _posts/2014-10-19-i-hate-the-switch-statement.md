@@ -1,13 +1,16 @@
 ---
 layout: post
-title: "I Hate the Switch Statement"
-modified:
+title: I Hate the Switch Statement
+modified: null
 categories: C++
-excerpt:
-tags: [C++,DSL]
-image:
-  feature:
-date: 2014-10-19T01:46:34+02:00
+excerpt: null
+tags: 
+  - C++
+  - DSL
+image: 
+  feature: null
+date: {}
+published: false
 ---
 
 C++ inherits many of its features from the C programming language, some of them fits well with modern programming, and some others do not. 
@@ -36,7 +39,7 @@ One of such constructions is the `switch` statement.
 
 ## Switch statement anatomy
 
-The `switch` statement from C is one of the pilars of control flow in C and C++, it executes conditionally a block of code corresponding to an specific value, given 
+The `switch` statement from C is one of the pilars of control flow in C and C++. It executes conditionally a block of code corresponding to an specific value, given 
 a set of `(value,code)` pairs, formely known as *"cases"*:
 
 {% highlight C %}
@@ -55,5 +58,6 @@ switch(c)
 }
 {% endhighlight %}
 
-## To switch or not to switch
+You pass as `switch` parameter
 
+## To switch or not to switch
