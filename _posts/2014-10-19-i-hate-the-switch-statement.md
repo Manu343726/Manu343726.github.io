@@ -31,7 +31,7 @@ for(; ++i , (i < 10) ;)
 }
 {% endhighlight %}
 
-In a time when the C syntax is reaching the top of its power, see the C++11 trailling return types or the C11 generic macros, there are some old and ugly constructions that still remains here, with its lack of expresiveness and a long list of potential issues related to their usage.
+In a time when the C syntax is reaching the top of its power, see the C++11 trailling return types or the C11 generic macros, there are some old and ugly constructions that still remain here, with their lack of expressiveness and a long list of potential issues related to their usage.
 
 One of such constructions is the `switch` statement.
 
