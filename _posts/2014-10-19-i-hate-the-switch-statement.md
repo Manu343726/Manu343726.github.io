@@ -1,21 +1,6 @@
 ---
 layout: post
 title: I Hate the Switch Statement
-modified: null
-categories: C++
-excerpt: null
-tags: 
-  - C++
-  - DSL
-image: 
-  feature: null
-date: {}
-published: true
----
-
----
-layout: post
-title: "I Hate the Switch Statement"
 modified:
 categories: C++
 excerpt:
@@ -29,11 +14,7 @@ comments: true
 C++ inherits many of its features from the C programming language, some of them fits well with modern programming, and some others do not.   
 One cathegory of such features is the syntax for flow control, a topic where C shines thanks to their constructions cappable of doing almost anything via almost any imaginable hack.   
 
-<<<<<<< HEAD
 Look at the `for` loop: Is not a simple three arguments construction. You can do whatever you like.
-=======
-See the `for` loop: Is not a simple three arguments construction. You can do whatever you like.
->>>>>>> eb3da11be8bf6e23e1b307c9996f5ec22347323c
 
 {% highlight C %}
 for(;;;)
