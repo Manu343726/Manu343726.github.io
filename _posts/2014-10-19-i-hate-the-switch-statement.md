@@ -11,8 +11,8 @@ date: 2014-10-19T01:46:34+02:00
 comments: true
 ---
 
-C++ inherits many of its features from the C programming language, some of them fits well with modern programming, and some others do not.   
-One cathegory of such features is the syntax for flow control, a topic where C shines thanks to their constructions cappable of doing almost anything via almost any imaginable hack.   
+C++ inherits many of its features from the C programming language, some of them fits well with modern programming, and some others do not.     
+One cathegory of such features is the syntax for flow control, where the C language stands above the rest of the languages thanks to some constructions able to do almost any trick you can ever imagine. 
 
 Look at the `for` loop: Is not a simple three arguments construction. You can do whatever you like.
 
