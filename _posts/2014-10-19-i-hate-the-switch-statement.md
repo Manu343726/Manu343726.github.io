@@ -10,7 +10,7 @@ tags:
 image: 
   feature: null
 date: {}
-published: false
+published: true
 ---
 
 C++ inherits many of its features from the C programming language, some of them fits well with modern programming, and some others do not.   
