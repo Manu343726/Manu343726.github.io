@@ -26,7 +26,7 @@ But sociality and friendship was not the problem, the problem was the so common 
 of what is the thing that identifies me, whats the thing I'm supposed to do better than the average person. Some people play soccer, others form a rock band, whoever knows. 
 Wasn't until the final years of high school I realized that programming could be the answer.
 
-I started programming during a software course on the (last?) year on the high school, such common course teaching Microsoft Word, Powerpoint, etc. But there was one interesting subject at the end of the year: Programming. 
+I started programming during a software course the (last?) year on the high school, such common course teaching Microsoft Word, Powerpoint, etc. But there was one interesting subject at the end of the year: Programming. 
 Programming! *"So this is how that programs are made? So cool!"* **This was my first reaction to Visual Basic 6**. Please don't leave this page after reading that, have some hope on me, ok?
 Yep, Visual Basic 6. But the thing worked, and I cannot stop programming! First was VB6, then VB.NET, later C#, and since three years full time C++. I really like it!
 
@@ -38,8 +38,14 @@ the software engineering community.
 People claiming at the benefits and advantages of Object Oriented Programming, the answer to all the questions on programming; people spending thousands of hours figuring out how cool the Big O notation is without realizing how
 the hardware (That thing where your programs are run) works, etc. I could be a bit biased from the "hardware and programming are what matters, stop doing all that math" thought, frankly. But at least be aware of your situation.
 
-I'm not going to provide a full list of best practices for Software Engineering here, I'm not the right person for that I think, nor throwing you two hundreds of facts and rules about good C++ programming tips, refer to the portfolio
-and the blog for that. What I want to do here is to encourage learing: **Please always stay tuned at the changes of the world and the community, be aware of the state-of-the-art of your preferred tools. Evolve. Don't get stuck on ideas
+I'm not going to provide a full list of best practices for Software Engineering here (I'm not the right person for that, I think), nor throwing you two hundreds of facts and rules about good C++ programming tips (refer to the portfolio
+and the blog for that). What I want to do here is to encourage learning: **Please always stay tuned at the changes of the world and the community, be aware of the state-of-the-art of your preferred tools. Evolve. Don't get stuck on ideas
 and feelings that have become invalid even before I have born.** Its hard, I know. But try to accomplish this.  
 
-This web is only a site where compile all my research on that challenge, all my thoughts, experiments, projects, whatever related to programming I do to be sure I'm always right or at least on the right way. And of course if that's not the case, please notice me!
+This web is only a site where compile all my research on that challenge, all my thoughts, experiments, projects, whatever related to programming I do to be sure I'm always right or at least on the right way. And of course **if that's not the case, please notice me!**
+
+## The challenge of a good looking site
+
+I'm not a web developer, I have little experience in web development. This site was built after two weeks of me forking jekyll themes and touching sass files in a random way. 
+I'm mostly happy with the result, but I know that could be improbed. I'm a C++ guy, so those HTML and CSS files are for me like what the libstdc++ sources cause to a newbbie C++
+programmer still fighting with `std::cin` and `std::cout`. Focus your attention in the content, instead of the container. *Oh, seems like I have learned some HTML jargon!*

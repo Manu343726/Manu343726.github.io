@@ -1,9 +1,12 @@
 ---
 layout: home
 excerpt: "My portfolio and thoughts landing page. Here's where my crazy stuff is compiled."
-tags: [C++,metaprogramming,template-meta-programming]
+image:
+  feature: mandelbrot.jpg
+  credit: Manu Sánchez	
+  creditlink: http://manu343726.github.io
 ---
 
-I'm Manu Sánchez, and this is my personal website. I'm mostly a programmer, so the average stuff of this website will be programming related stuff. If you like it or not, I don't care,
-I'm doing this just for fun.
-Interesting, beautiful, crazy, bullshit stuff? Who knows, depends on you and your perspective. **Read and judge yourselves**.
+I'm Manu Sánchez, and this is my personal website. I'm mostly a programmer, so the average stuff of this website will be programming related. 
+
+From my portfolio to some sparse posts explaining the last crazy idea I have implemented with C++. I hope you like it.
