@@ -1,14 +1,16 @@
 ---
 layout: post
 title: I Hate the Switch Statement
-modified:
+modified: null
 categories: C++
-excerpt:
-tags: [C++]
-image:
-  feature:
-date: 2014-10-19T01:46:34+02:00
+excerpt: null
+tags: 
+  - C++
+image: 
+  feature: null
+date: {}
 comments: true
+published: true
 ---
 
 C++ inherits many of its features from the C programming language, some of them fit well with modern programming, and some others do not.     
@@ -31,7 +33,7 @@ for(; ++i , (i < 10) ;)
 }
 {% endhighlight %}
 
-In a time when the C syntax is reaching the top of its power, see the C++11 trailling return types or the C11 generic macros, there are some old and ugly constructions that still remain here, with their lack of expressiveness and a long list of potential issues related to their usage.
+In a time when the C syntax is reaching the top of its power, see the C++11 trailing return types or the C11 generic macros, there are some old and ugly constructions that still remain here, with their lack of expressiveness and a long list of potential issues related to their usage.
 
 One of such constructions is the `switch` statement.
 
@@ -56,13 +58,13 @@ switch(c)
 }
 {% endhighlight %}
 
-You pass a value as `switch` parameter, that value is evaluated and then the program jumps to the proper case tag. That low-level way of explaining this, resembling assembly, is the perfect choice here since **thats exactly the behavior of the `switch`**, besides how its actually implemented (Jump tables, etc).
+You pass a value as `switch` parameter, that value is evaluated and then the program jumps to the proper case tag. That low-level way of explainning this, resembling assembly, is the perfect choice here since **that's exactly the behavior of the `switch`**, besides how its actually implemented (Jump tables, etc).
 
 So what's the problem with the *eval and jump* approach? Simple: **Think about the C `switch`  as a collection of `goto`s**.  
 Each case code is not a block unless you specify it using `{}`. This produces some problems when defining variables in a `switch`, and the programmer should be careful and sure about what is doing.   
 Also **the program does not *exit* the case code after executing its last instruction**, we should exit manually via `break`. Remember, there is really no case block of code, so there is no block to exit from. 
 
-The *eval and jump* C `switch` behaves like just a couple of `goto`s to specific labels, `case`s, with all the problems explained above. But C programmers have been ignoring such problems since the beginning of the language because that simple approach allows us to perform **amazing and *"Oooh, I'm the coolest programmer!"* crazy hacks**.  
+The *eval and jump* C `switch` behaves like just a couple of `goto`s to specific labels, `case`s, with all the problems explained above. But C programmers have been ignoring such problems since the beginning of the language because that simple approach (Specifically, the language specification of the `switch`) allows us to perform **amazing and *"Oooh, I'm the coolest programmer!"* crazy hacks**.  
 The best example of this fever, the [Duff's device](http://www.drdobbs.com/a-reusable-duff-device/184406208)
 
 {% highlight C %}
@@ -81,7 +83,7 @@ case 1: HAL_IO_PORT = *pSource++;
 {% endhighlight %}
 *Thats a loop unroller. Ugh... We all have to thank modern compiler research.*
 
-My intention is not to critize this kind of hacks, they were reasonable in the context they were designed for. In the case of Duff's device, there were no compiler magic like what we have available these days. They only had a stupid compiler and their need to squeeze each CPU cicle.
+My intention is not to criticize this kind of hacks, they were reasonable in the context they were designed for. In the case of Duff's device, there were no compiler magic like what we have available these days. They only had a stupid compiler and their need to squeeze each CPU cicle.
 
 What I'm trying to show here is that, even with all that potential sorcery, **the C `switch` statement is far from being really useful and comfortable for the average programmer and the most common programming tasks**.
 
@@ -108,7 +110,7 @@ A chain of `if`s. I have nothing against the `if`, but consider what happens the
 
 ### Simple value --> code mapping
 
-This task, this simple task, is exactly what the `switch` statement is supposed to do. But the community knows the issues of the `switch` explained above, so using a map (Or even a lookup table) instead of a `switch` have become a good practice in our guidelines:
+This task, this simple task, is exactly what the `switch` statement is supposed to do. But the community knows the issues of the `switch` explained above, so using a map (Or even a lookup table) instead of a `switch` has become a good practice in our guidelines:
 
 {% highlight cpp %}
 void dispatch_event(const Event& e)
@@ -128,8 +130,8 @@ void dispatch_event(const Event& e)
 
 My question is: **Is there any alternative for the `switch` statement?**
 
-I'm a big fan of the *"Use algorithms instead of raw loops"* motto, it increases code readability and improves 
-maintainability. But my attempts to find an equivalent alternative for the `switch` were unsuccessful.  
+I'm a big fan of the [*"Use algorithms instead of raw loops"*](http://www.drdobbs.com/stl-algorithms-vs-hand-written-loops/184401446) motto, it increases code readability and improves 
+maintainability. But my attempts to find an equivalent for the `switch` were unsuccessful.  
 The patterns shown above work, but they are still to verbose compared to what we are really trying to say with that bunch of characters.
 
 What are the alternatives? Maybe a pattern matching system for C++? Maybe some cool DSL? I'm not sure, but what I know is that we really need a replacement and/or improvement for the `switch` statement.
