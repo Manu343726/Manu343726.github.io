@@ -46,7 +46,7 @@ and feelings that have become invalid even before I was born.** Its hard, I know
 
 This web is only a site where compile all my research on that challenge, all my thoughts, experiments, projects, whatever related to programming I do to be sure I'm always right or at least on the right way. And of course **if that's not the case, please notice me!**
 
-## The challenge of a good looking site
+## The challenge for a good looking site
 
 I'm not a web developer, I have little experience in web development. This site was built after two weeks of me forking jekyll themes and touching sass files in a random way. 
 I'm mostly happy with the results, but I know it could be improved. I'm a C++ guy, note that those HTML and CSS files are for me like what the libstdc++ sources do to the mental health of a C++ newbbie still fighting with `std::cin` and `std::cout`.  
