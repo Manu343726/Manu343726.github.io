@@ -12,7 +12,7 @@ comments: true
 ---
 
 If you followed my crazy tales about [the Haskell Metaphor](http://isocpp.org/blog/2014/11/metaprogramming-with-modern-c-the-haskell-metaphor) you may think I have a great problem with myself and the way I waste my free time...  
-I have been doing intensive C++ template metaprogramming for up to three years, developing my own tmp library called [Turbo](), with the idea of providing high-level facilities for C++ metaprogramming. 
+I have been doing intensive C++ template metaprogramming for up to three years, developing my own tmp library called [Turbo](https://github.com/Manu343726/Turbo), with the idea of providing high-level facilities for C++ metaprogramming. 
 
 You all know, the syntax is horrible, the compiler error messages are not better. But there's still a lot of people doing tmp. Why? Generic programming, libraries, etc. But that's another story. *Someone suggested me to submit a talk to Meeting C++ 2015 on the topic, stay tuned :)*
 
