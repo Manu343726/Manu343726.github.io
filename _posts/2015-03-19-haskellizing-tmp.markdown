@@ -81,7 +81,7 @@ Even if `meta::defer`/`tml::lazy` work, these are not the best way to deal with 
 Metafunction classes
 --------------------
 
-Boost.MPL solved the problem many years ago through *metafunction classes*. A metafunction class is just another representation of a metafunction: Despite getting the result directly via a `::type` member and passing function parameters as template parameters, metafunction classes hold the computation on a nested template-based metafunction, usually called `apply` by convention, **actually decoupling function evaluation from instantiation**.   
+Boost.MPL solved the problem many years ago through *metafunction classes*. A metafunction class is just another representation of a metafunction: Instead of getting the result directly via a `::type` member and passing function parameters as template parameters, metafunction classes hold the computation on a nested template-based metafunction, usually called `apply` by convention, **actually decoupling function evaluation from instantiation**.   
 
 This is the identity function above in the metafunction class way:
 
