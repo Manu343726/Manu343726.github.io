@@ -27,6 +27,8 @@ I have many projects in mind, most of them related to C++ since is my favorite l
 
  - [**cppascii**](https://github.com/Manu343726/cppascii): A C++ course I'm currently managing for two years at my university. Enter and see how I torture my pupils.
 
+ - [**Snail**](https://www.reddit.com/r/cpp/comments/2unezc/snail_continuationready_algorithms_from_stl/): I wanted composable range algorithms for C++, but waiting for Eric Niebler's range library was not an option. Meanwhile, Snail was my answer...
+
 There are many other projects, check [my github account](https://github.com/Manu343726) if you like.
 
 ## Stackoverflow <!-- ![](http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png) -->
