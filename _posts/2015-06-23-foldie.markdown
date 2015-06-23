@@ -52,7 +52,7 @@ $ bii find
 Resolving manu343726/turbo_core dependency...
 $ bii build
 ...
-{% endhiglight %}
+{% endhighlight %}
 
 And then run the executable to see what happened:
 
@@ -101,7 +101,7 @@ namespace foldie
 }
 
 #endif /* FOLDIE_HPP */
-{% endhiglight %}
+{% endhighlight %}
 
 Foldie takes its input in the form of a `foldie.yaml` file with the project settings.
 For metaprogram input, just add values to the `input` key:
