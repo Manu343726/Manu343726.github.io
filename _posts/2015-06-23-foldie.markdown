@@ -17,12 +17,13 @@ In this crazy story, to *run* the metaprogram becomes to compile the c++ program
 
 Let's write a simple metaprogram: *To generate 100 consecutive numbers at compile-time*.
 
-``` shell
+{% highlight shell %}
 $ mkdir metastuff && cd metastuff
 $ bii init -l
-```
+{% endhilight %}
+
 `sequence.cpp`
-``` cpp
+{% highlight cpp %}
 #include <manu343726/turbo_core/turbo_core.hpp>
 
 using output = tml::integral_range<1,100>;
@@ -32,34 +33,37 @@ int main()
 	for(int i : tml::to_runtime<output>())
 		std::cout << i << std::endl;
 }
-```
+{% enndhighlight %}
+
 `CMakeLists.txt`
-``` cmake
+
+{% highlight cmake %}
 ADD_BIICODE_TARGETS()
 
 target_compile_options(${BII_BLOCK_TARGET} INTERFACE 
                        -std=c++11 
                        -ftemplate-depth-10000)
-```
+{% endhighlight %}
+
 Let's build it:
 
-``` shell
+{% highlight shell %}
 $ bii find
 Resolving manu343726/turbo_core dependency...
 $ bii build
 ...
-```
+{% endhiglight %}
 
 And then run the executable to see what happened:
 
-``` shell
+{% highlight shell %}
 $ ./bin/manu343726_metastuff_sequence
 1
 2
 3
 ...
 99
-```
+{% endhighlight %}
 
 What if i want to run the same metaprogram, but with different arguments? There's no equivalent of `int main(int argc, char* argv[])` for metaprograms. What we probably are going to do is to touch the code and repeat all the build steps above.  
 Trust me, this is so boring. Even more if you want to test your metaprograms multiple times with a widespread set of inputs.
@@ -84,7 +88,7 @@ Everything in a human readable way. I love YAML-based configuration, you have be
 What's the equivalent of `int main(int argn, char* argv[])`? I'm not sure. Here's my solution: Keep your input *variables* in a header file, then include that file:
 
 `foldie.hpp`
-```cpp
+{% highlight cpp %}
 #ifdef FOLDIE_HPP
 #define FOLDIE_HPP
 
@@ -97,48 +101,48 @@ namespace foldie
 }
 
 #endif /* FOLDIE_HPP */
-```
+{% endhiglight %}
 
 Foldie takes its input in the form of a `foldie.yaml` file with the project settings.
 For metaprogram input, just add values to the `input` key:
 
 `foldie.yml`
-``` yaml
+{% highlight yaml %}
 input:
   x: std::integral_constant<int,1>
-``` 
+{% endhighlight %}
 
 Then foldie will generate a `foldie.hpp` file from your input. Also you can specify a custom header with the `header` entry:
 
-``` yaml
+{% highlight yaml %}
 header: foldie.hpp
-```
+{% highlight %}
 *Note all files/directories are relative to the `foldie.yml` file.*
 
 ### Passing parameters to the metaprogram, director's cut
 
 *"Put each input in the yaml `input` entry"*. Simple and working approach, but still a bit boring, isn't? Since I have done the effort to write this scripts, let's push the thing to the top level. Forget templates. **Enter python values**.
 
-``` yaml
+{% highlight yaml %}
 input:
   x: 1
   y: [1,2,3,4]
   z: (1, [], 2)
-```
+{% highlight %}
 
 You can even write simple python expressions:
 
-``` yaml
+{% highlight yaml %}
 input:
   list: '[x for x in xrange(0,100)]'
-```
+{% highlight %}
 *The single quotes are needed, a matter of how yaml parses the file...*
 
 Then foldie will generate `tml::list<std::integral_constant<int,1>, std::integral_constant<int,1>,...,std::integral_constant<int,99>>` typelist named `foldie::input::list`.
 
 But this does not work with Turbo only. What foldie really does is to figure out what *datatypes* your metaprogramming library has, then translates the python values to your lib equivalents. **This is the `datatypes` entry**:
 
-``` yaml
+{% highlight yaml %}
 datatypes:
   int: std::integral_constant<int,$(1)>
   list: tml::list<$(...)>
@@ -147,17 +151,17 @@ datatypes:
   tuple: tml::list<$(...)>
   string: tml::list<$(...)>
   char: std::integral_constant<char, $(1)>
-```
+{% highlight %}
 
 The key  of each entry is the name of the equivalent python type, with some exceptions such as `char` and `pair` since python does not handle those types. I added them for convenience.
 
 This is part of the `foldie.yml` file I have written to try foldie with Eric Niebler's Meta:
 
-``` yaml
+{% highlight yaml %}
 datatypes:
   int: std::integral_constant<int,$(1)>
   list: meta::list<$(...)>
-```
+{% highlight %}
 
 The syntax for datatypes is simple: Just write your templates, putting variables on them representing the python input:
 
@@ -166,13 +170,13 @@ The syntax for datatypes is simple: Just write your templates, putting variables
 
 Foldie parses datatypes recursively. So in most situations only one simple variable substitution is needed. See the lists examples above:
 
-``` yaml
+{% highlight yaml %}
 datatypes:
   list: tml::list<$(...)>
 
 input:
   x: [x for x in xrange(0,100) if x % 2 == 0]
-```
+{% highlight %}
 
 The `$(...)` variable there really means "expand whatever elements the sequence has". Before variable substitution foldie always translates variable/s value/s first.
 
@@ -180,10 +184,10 @@ The `$(...)` variable there really means "expand whatever elements the sequence 
 
 Of course you can run your favorite compiler and then launch the executable. But since the point of foldie is to ease running metaprograms, it provides two extra entries: `build_command` and `run_command`
 
-``` yaml
+{% highlight yaml %}
 build_command: bii buzz
 run_command: 'bin/manu343726_foldie-example_main'
-```
+{% highlight %}
 *Again, paths are relative to `foldie.yml` file.*
 
 Running foldie
@@ -191,7 +195,7 @@ Running foldie
 
 Foldie is shipped as a bash executable script which calls the `foldie.py` script. Let's see foldie's help message:
 
-```bash
+{% highlight shell %}
 $ foldie -h
 usage: foldie.py [-h] [--project PROJECT] [--verbose] {build,buzz,run}
 
@@ -204,7 +208,7 @@ optional arguments:
   -h, --help         show this help message and exit
   --project PROJECT  foldie project YAML file
   --verbose, -v
-```
+{% highlight %}
 
 We have three commands:
 
@@ -216,20 +220,20 @@ We have three commands:
 
 Let's write a simple foldie example step by step:
 
-``` bash
+{% highlight shell %}
 $ mkdir foldie_example
 $ cd foldie_example
 $ vim foldie.yml
-```
+{% highlight %}
 
 `foldie.yml`
-``` cpp
+{% highlight yaml %}
 datatypes:
   int: std::integral_constant<int, $(1)>
   list: meta::list<$(...)>
 
 input:
   x: 99                                       
-```
+{% highlight %}
 
 > Written with [StackEdit](https://stackedit.io/).
