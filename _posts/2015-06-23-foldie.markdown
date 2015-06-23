@@ -20,7 +20,7 @@ Let's write a simple metaprogram: *To generate 100 consecutive numbers at compil
 {% highlight shell %}
 $ mkdir metastuff && cd metastuff
 $ bii init -l
-{% endhilight %}
+{% endhighlight %}
 
 `sequence.cpp`
 {% highlight cpp %}
@@ -33,7 +33,7 @@ int main()
 	for(int i : tml::to_runtime<output>())
 		std::cout << i << std::endl;
 }
-{% enndhighlight %}
+{% endhighlight %}
 
 `CMakeLists.txt`
 
