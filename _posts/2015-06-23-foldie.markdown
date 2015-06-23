@@ -17,7 +17,7 @@ In this crazy story, to *run* the metaprogram becomes to compile the c++ program
 
 Let's write a simple metaprogram: *To generate 100 consecutive numbers at compile-time*.
 
-{% highlight shell %}
+{% highlight bash %}
 $ mkdir metastuff && cd metastuff
 $ bii init -l
 {% endhighlight %}
@@ -47,7 +47,7 @@ target_compile_options(${BII_BLOCK_TARGET} INTERFACE
 
 Let's build it:
 
-{% highlight shell %}
+{% highlight bash %}
 $ bii find
 Resolving manu343726/turbo_core dependency...
 $ bii build
@@ -56,7 +56,7 @@ $ bii build
 
 And then run the executable to see what happened:
 
-{% highlight shell %}
+{% highlight bash %}
 $ ./bin/manu343726_metastuff_sequence
 1
 2
@@ -116,7 +116,7 @@ Then foldie will generate a `foldie.hpp` file from your input. Also you can spec
 
 {% highlight yaml %}
 header: foldie.hpp
-{% highlight %}
+{% endhighlight %}
 *Note all files/directories are relative to the `foldie.yml` file.*
 
 ### Passing parameters to the metaprogram, director's cut
@@ -128,14 +128,14 @@ input:
   x: 1
   y: [1,2,3,4]
   z: (1, [], 2)
-{% highlight %}
+{% endhighlight %}
 
 You can even write simple python expressions:
 
 {% highlight yaml %}
 input:
   list: '[x for x in xrange(0,100)]'
-{% highlight %}
+{% endhighlight %}
 *The single quotes are needed, a matter of how yaml parses the file...*
 
 Then foldie will generate `tml::list<std::integral_constant<int,1>, std::integral_constant<int,1>,...,std::integral_constant<int,99>>` typelist named `foldie::input::list`.
@@ -151,7 +151,7 @@ datatypes:
   tuple: tml::list<$(...)>
   string: tml::list<$(...)>
   char: std::integral_constant<char, $(1)>
-{% highlight %}
+{% endhighlight %}
 
 The key  of each entry is the name of the equivalent python type, with some exceptions such as `char` and `pair` since python does not handle those types. I added them for convenience.
 
@@ -161,7 +161,7 @@ This is part of the `foldie.yml` file I have written to try foldie with Eric Nie
 datatypes:
   int: std::integral_constant<int,$(1)>
   list: meta::list<$(...)>
-{% highlight %}
+{% endhighlight %}
 
 The syntax for datatypes is simple: Just write your templates, putting variables on them representing the python input:
 
@@ -176,7 +176,7 @@ datatypes:
 
 input:
   x: [x for x in xrange(0,100) if x % 2 == 0]
-{% highlight %}
+{% endhighlight %}
 
 The `$(...)` variable there really means "expand whatever elements the sequence has". Before variable substitution foldie always translates variable/s value/s first.
 
@@ -187,7 +187,7 @@ Of course you can run your favorite compiler and then launch the executable. But
 {% highlight yaml %}
 build_command: bii buzz
 run_command: 'bin/manu343726_foldie-example_main'
-{% highlight %}
+{% endhighlight %}
 *Again, paths are relative to `foldie.yml` file.*
 
 Running foldie
@@ -195,7 +195,7 @@ Running foldie
 
 Foldie is shipped as a bash executable script which calls the `foldie.py` script. Let's see foldie's help message:
 
-{% highlight shell %}
+{% highlight bash %}
 $ foldie -h
 usage: foldie.py [-h] [--project PROJECT] [--verbose] {build,buzz,run}
 
@@ -208,7 +208,7 @@ optional arguments:
   -h, --help         show this help message and exit
   --project PROJECT  foldie project YAML file
   --verbose, -v
-{% highlight %}
+{% endhighlight %}
 
 We have three commands:
 
@@ -220,11 +220,11 @@ We have three commands:
 
 Let's write a simple foldie example step by step:
 
-{% highlight shell %}
+{% highlight bash %}
 $ mkdir foldie_example
 $ cd foldie_example
 $ vim foldie.yml
-{% highlight %}
+{% endhighlight %}
 
 `foldie.yml`
 {% highlight yaml %}
@@ -234,6 +234,6 @@ datatypes:
 
 input:
   x: 99                                       
-{% highlight %}
+{% endhighlight %}
 
 > Written with [StackEdit](https://stackedit.io/).
