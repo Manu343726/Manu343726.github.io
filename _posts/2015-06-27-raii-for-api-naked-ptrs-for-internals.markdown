@@ -152,7 +152,7 @@ struct vector : public raw_vector<T>
 
     ~vector()
     {
-        delete data_;
+        delete[] data_;
     }
 
     void insert(typename raw_t::iterator at, const T& e)
