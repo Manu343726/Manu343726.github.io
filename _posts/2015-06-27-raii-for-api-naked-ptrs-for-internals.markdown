@@ -47,7 +47,7 @@ Is there any intermediate solution? Raw resources with properties?
 
 Consider `std::vector`. It manages a dynamic array. `vector` has three kind of member functions: Special member functions (Constructors, destructor, etc to manage array lifetime), mutable functions (`push_back()`, `reserve()`, etc), and finally member functions that do not mutate the array itself but may change its data: `at()`, `front()`, back()`, etc.
 
-What I propose is to split the implementation of resource managers like `vector` into two different classes: The one which contains the resource and non-mutating methods, and the one which does RAII and guarantees proper management of the resource (So mutating members belong here):
+What I propose is to split the implementation of resource handlers like `vector` into two different classes: The one which contains the resource and non-mutating methods, and the one which does RAII and guarantees proper management of the resource (So mutating members belong here):
 
 {% highlight cpp %}
 
