@@ -171,7 +171,7 @@ struct vector : public raw_vector<T>
             for(std::size_t i = pos + 1; i < raw_t::size(); ++i)
                 buff_[i] = std::move(raw_t::data_[i]);
 
-            delete raw_t::data_;
+            delete[] raw_t::data_;
             raw_t::data_ = buff_;
             raw_t::size_ += 1;
             raw_t::capacity_ *= 2;
