@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 _site
 .sass-cache
 .DS_Store
@@ -7,3 +8,15 @@ Gemfile.lock
 codekit-config.json
 node_modules
 _asset_bundler_cache
+=======
+_site/*
+_theme_packages/*
+
+Thumbs.db
+.DS_Store
+
+!.gitkeep
+
+.rbenv-version
+.rvmrc
+>>>>>>> jekyll-bootstrap/master
