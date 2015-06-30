@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Resurce Handles and Value Semantics"
+title: "Resurce Handlers and Value Semantics"
 modified:
 categories: 
 excerpt:
