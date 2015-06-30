@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: page
 excerpt: "My portfolio and thoughts landing page. Here's where my crazy stuff is compiled."
 image:
   //feature: mandelbrot.jpg
