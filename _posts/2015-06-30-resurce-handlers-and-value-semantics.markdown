@@ -243,7 +243,7 @@ private:
 };
 {% endhighlight %}
 
-*Note we override `move` and `move_assign` in `ptr_semantics` since when working with pointers swapping them is enough. This is applicable to any situation where handles are cheap, but that has not to be always the case.*
+*Note we override `move` and `move_assign` in `ptr_semantics` since when working with pointers swapping them is enough. This is applicable to any situation where handles are cheap, but that's not always the case.*
 
 Now we are able to avoid `new/delete` while having proper value semantics:
 
