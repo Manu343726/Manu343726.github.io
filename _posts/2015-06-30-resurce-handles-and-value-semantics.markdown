@@ -32,13 +32,13 @@ private:
 }
 {% endhighlight %}
 
-*"Hopefully, I know about the Rule Of Zero"* you might think. Wrap the handle with a `std::shared_ptr` and a custom deleter and you are done.
+*"Great, I know about the Rule Of Zero"* you may think. Wrap the handle with a `std::shared_ptr` and a custom deleter and you are done.
 
 {% highlight cpp %}
 std::shared_ptr<SDL_Surface>(SDL_LoadBMP(....), SDL_FreeSurface);
 {% endhighlight %}
 
-That may be the case for this example, I don't expect expensive resources like surfaces to be easily copyable but created on demand and shared across the engine. But what if the resource should be copyable? That's the flaw: **`std::shared_ptr` does not do value semantics but sharing semantics instead**. 
+That could be the case for this example, I don't expect expensive resources like surfaces to be easily copyable but created on demand and shared across the engine. But what if the resource should be copyable? That's the flaw: **`std::shared_ptr` does not do value semantics but sharing semantics instead**. 
 
 That's the point: From the two alternatives provided by the Standard Library, one is non-copyable, and the other does sharing semantics. There's a common practice of going ahead and picking `std::shared_ptr` *just to make my class copy* without realizing the semantics that will give to your objects.  
 The answer from the Standard Library is: Stop programming by Rules and write all the member functions, or waste your time writing a value-semantics adaptor.
