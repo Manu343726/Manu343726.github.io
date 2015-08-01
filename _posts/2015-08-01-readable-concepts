@@ -1,0 +1,82 @@
+---
+layout: post
+title: "Readable Concepts"
+modified:
+categories: 
+excerpt:
+tags: [c++]
+image:
+  feature:
+date: 2015-08-01T02:05:16+02:00
+---
+
+Before [the acceptance of Concepts Lite TS into C++17](todo), there was a lot of effort out there in the community to make a C++11 compatible implementation of Concepts, at least an emulation wrapping the usual SFINAE tricks.  
+The point of Concepts is not the constraint syntax (which leads to pretty readable code but imho is not strictly necessary) but the hierarchical organization of different type concepts that had always been with us, but only as [documentation notes](http://en.cppreference.com/w/cpp/concept).
+
+## Previous work
+
+In this widespread C++ community, taking template meta-programming seriously introduces you into a very little niche of people as-crazy-as-you, currently leaded by what I call "The Gang Of Tmp": Louis Dionne, Paul Fultz II, and Eric Niebler. There are other players that are rising and I would like to see more of their work in the future, like Peter Dimov's series on Simple C++11 Meta-programming, and the amazing work from Philip Roseé Forben on stateful meta-programming.
+
+Anyone else noticed the fun fact that each one of the gang above has implemented it's own version of a C++11 Concepts library? Fultz has [Fit](todo), [Boost.Hana](todo) has another one built in its internals, Niebler's range-v3 proposal is based heavily on Concept specification. We C++ers really have a serious problem on code sharing and dependency management... 
+
+I have tried all those libs. Fit provides straightforward trait specification and checking, the best alternative for defining traits and concepts in your libraries these days: Just clone Fit into your include directories and you are ready. No dependencies, no headaches. I like range-v3 concepts since Niebler did a lot of work providing a wide set of concepts for the library. Almost any Standard Library concept is already defined there, plus the ones about ranges. Finally is Hana from Dionne: You really guys should try Boost.Hana. Hana is C++ The Right Way. Seriously. Concepts implementation in Hana are a mere implementation detail, but I'm confident Louis is currently working on modularizing the library, so it could be available as a standalone module in the future.
+
+## The problem
+
+One of the greatest gifts given by the Concepts Lite proposal is to reduce template diagnostic boilerplate when a concept is not satisfied: Instead of showing the whole "call stack" of instantiation failures, Concepts Lite will provide a meaningful message at the uppermost level:
+
+{% highlight cpp %}
+
+struct foo
+{
+	foo() = delete;
+	foo(int) {}	
+};
+
+void f(const DefaultConstructible& e);
+
+int main()
+{
+	f(foo{});
+}
+
+{% endhighlight %}
+
+> **foo** does not satisfy the **DefaultConstructible** concept
+
+Compare that to its SFINAE based alternative:
+
+{% highlight cpp %}
+
+template<typename T, 
+         typename = typename std::enable_if<std::is_default_constructible<T>::value>::type>
+void f(const T& e);
+
+int main()
+{
+	f(foo{});
+}
+
+{% endhighlight %}
+
+> No member named "type" in "std::enable_if<std::is_default_constructible<foo>::value>"
+
+clang at least identifies this pattern and gives you something similar to "Specialization disabled by enable_if".
+
+So far so good. But consider a more complex concept, one that's the aggregation of multiple properties and/or refines some other concepts.
+
+{% highlight cpp %}
+
+template<typename T, 
+         typename = typename std::enable_if<std::is_default_constructible<T>::value>::type>
+void f(const T& e);
+
+int main()
+{
+	f(foo{});
+}
+
+{% endhighlight %}
+
+
+
