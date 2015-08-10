@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Readable Concepts"
+title: "User Friendly C++14 Concepts"
 modified:
 categories: 
 excerpt:
@@ -134,7 +134,7 @@ All the guys above have their own concepts checking library! I have to write min
 
 ## Worm
 
-Worm is the codename of my readable concepts library. *I'm open for name suggestions*. 
+Worm is the codename of my user friendly concepts library. *I'm open for name suggestions*. 
 
 It is focused on defining concepts in a declarative way, plus storing information about the requirements of the concept applied to a type.
 
