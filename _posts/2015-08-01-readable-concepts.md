@@ -43,7 +43,9 @@ int main()
 
 {% endhighlight %}
 
-> **foo** does not satisfy the **DefaultConstructible** concept  
+{% highlight text %}
+**foo** does not satisfy the **DefaultConstructible** concept  
+{% endhighlight %}
 
 Compare that to its SFINAE based alternative:
 
@@ -60,9 +62,11 @@ int main()
 
 {% endhighlight %}
 
-> No member named "type" in "std::enable_if<std::is_default_constructible<foo>::value>"  
+{% highlight text %}
+No member named "type" in "std::enable_if<std::is_default_constructible<foo>::value>"  
+{% endhighlight %}
 
-clang at least identifies this pattern and gives you something similar to "Specialization disabled by enable_if".
+clang at least identifies this pattern and gives you something similar to *"Specialization disabled by enable_if"*.
 
 So far so good. But consider a more complex concept, one that's the aggregation of multiple properties and/or refines some other concepts. Take for example `TotallyOrdered` concept [from range-v3](https://github.com/ericniebler/range-v3/blob/a9c05cd3f879d6b363d60d26ebfc8c55948acb04/include/range/v3/utility/concepts.hpp#L479):
 
@@ -74,7 +78,7 @@ struct TotallyOrdered
     void requires_(T);
 
     template<typename T, typename U>
-    auto requires_(T t, U u) -> decltype(
+    auto requires_(T t, U u) -decltype(
         concepts::valid_expr(
             concepts::model_of<TotallyOrdered>(val<T>()),
             concepts::model_of<TotallyOrdered>(val<U>())
@@ -155,11 +159,13 @@ int main()
 }
 {% endhighlight %}
 
-> Allocatable requires:  
-> "new T_" of type "T_*" [SUCCEED]  
-> "delete std::declval<T_*>()" [SUCCEED]  
-> "new T_[666]" of type "T_*" [SUCCEED]  
-> "delete [] new T_[666]" [SUCCEED]  
+{% highlight text %}
+Allocatable requires:  
+"new T_" of type "T_*" [SUCCEED]  
+"delete std::declval<T_*>()" [SUCCEED]  
+"new T_[666]" of type "T_*" [SUCCEED]  
+"delete [] new T_[666]" [SUCCEED]  
+{% endhighlight %}
 
 ## Defining a concept
 
@@ -180,13 +186,13 @@ END_CONCEPT(Regular)
 
 Worm concepts can take any number of types as parameters, and those are exposed in multiple ways to make the concept the most readable possible on each scenario:
 
- - First parameter: `T`, `First`, `Lhs`, or `Head`. For optimal readability in unary, binary, and n-ary concepts. Concepts without parameters are not valid, so the first parameter is always defined.
+ - **First parameter**: `T`, `First`, `Lhs`, or `Head`. For optimal readability in unary, binary, and n-ary concepts. Concepts without parameters are not valid, so the first parameter is always defined.
 
- - Second Parameter: `U`, `Second`, `Rhs`. If the concept was instanced with one parameter only, its value is undefined.
+ - **Second Parameter**: `U`, `Second`, `Rhs`. If the concept was instanced with one parameter only, its value is undefined.
 
- - Rest: `Tail`, a variadic pack packing all parameters except first. `Head` and `Tail` are suited for working with recursive concepts in an easy way. If there is one parameter only, the pack is empty.
+ - **Rest**: `Tail`, a variadic pack packing all parameters except first. `Head` and `Tail` are suited for working with recursive concepts in an easy way. If there is one parameter only, the pack is empty.
 
- - All: `Ts`, a variadic pack.
+ - **All**: `Ts`, a variadic pack.
 
 As an example, imagine you want to write an n-ary equivalent of `Regular`, a concept that checks if all the types passed are `Regular`:
 
@@ -204,40 +210,42 @@ int main()
 }
 {% endhighlight %}
 
-> Regulars requires:  
-> While refining (Regular<Head>, Regular<Tail>...) with Regulars:  
-> Regular requires:  
-> While refining (Semiregular<T>, EqualityComparable<T>) with Regular:  
-> Semiregular requires:  
->  "&lvalue<T_>" of type "const T_*" [SUCCEED]  
-> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T> >, CopyAssignable<T>) with Semiregular:  
-> DefaultConstructible requires:  
->  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED]  
-> CopyConstructible requires:  
->  "(std::is_copy_constructible<Ts...>)" giving "true" [SUCCEED]  
-> Destructible requires:  
->  "(std::is_destructible<Ts...>)" giving "true" [SUCCEED]  
-> CopyAssignable requires:  
->  "(std::is_copy_assignable<Ts...>)" giving "true" [SUCCEED]  
-> EqualityComparable requires:  
->  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
->  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
-> Regular requires:  
-> While refining (Semiregular<T>, EqualityComparable<T>) with Regular:  
-> Semiregular requires:  
->  "&lvalue<T_>" of type "const T_*" [SUCCEED]  
-> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T>, CopyAssignable<T>) with Semiregular:  
-> DefaultConstructible requires:  
->  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED]  
-> CopyConstructible requires:  
->  "(std::is_copy_constructible<Ts...>)" giving "true" [SUCCEED]  
-> Destructible requires:  
->  "(std::is_destructible<Ts...>)" giving "true" [SUCCEED]  
-> CopyAssignable requires:  
->  "(std::is_copy_assignable<Ts...>)" giving "true" [SUCCEED]  
-> EqualityComparable requires:  
->  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
->  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
+{% highlight text %}
+Regulars requires:  
+While refining (Regular<Head>, Regular<Tail>...) with Regulars:  
+Regular requires:  
+While refining (Semiregular<T>, EqualityComparable<T>) with Regular:  
+Semiregular requires:  
+ "&lvalue<T_>" of type "const T_*" [SUCCEED]  
+While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T>, CopyAssignable<T>) with Semiregular:  
+DefaultConstructible requires:  
+ "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED]  
+CopyConstructible requires:  
+ "(std::is_copy_constructible<Ts...>)" giving "true" [SUCCEED]  
+Destructible requires:  
+ "(std::is_destructible<Ts...>)" giving "true" [SUCCEED]  
+CopyAssignable requires:  
+ "(std::is_copy_assignable<Ts...>)" giving "true" [SUCCEED]  
+EqualityComparable requires:  
+ "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
+ "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
+Regular requires:  
+While refining (Semiregular<T>, EqualityComparable<T>) with Regular:  
+Semiregular requires:  
+ "&lvalue<T_>" of type "const T_*" [SUCCEED]  
+While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T>, CopyAssignable<T>) with Semiregular:  
+DefaultConstructible requires:  
+ "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED]  
+CopyConstructible requires:  
+ "(std::is_copy_constructible<Ts...>)" giving "true" [SUCCEED]  
+Destructible requires:  
+ "(std::is_destructible<Ts...>)" giving "true" [SUCCEED]  
+CopyAssignable requires:  
+ "(std::is_copy_assignable<Ts...>)" giving "true" [SUCCEED]  
+EqualityComparable requires:  
+ "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
+ "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
+{% endhighlight %}
 
 ### Requirements
 
@@ -256,11 +264,11 @@ Any number of requirements is supported inside a concept.
 
 Currently worm provides the following requirements:
 
- - `REQUIRES_EXPR(<expression>)`: Checks if `<expression>` is valid.
- - `REQUIRES_EXPR_EXPECTED(<expression>, <expected>)`: Checks if `<expression>` is valid and yields a value of type `<expected>`.
- - `REQUIRES_EXPR_CONVERTIBLE(<expression>, <expected>)`: Checks if `<expression>` is valid and yields a value convertible to type `<expected>`.
- - `REQUIRES_TRAIT_EXPECTED(<trait instance>, <expected>)`: Checks if a given type trait/concept instance yields the value (`::value`) `<expected>`.
- - `REQUIRES_TRAIT(<trait instance>)`: Checks if a given type-trait/concept instance is fulfilled. Just an alias of `REQUIRES_TRAIT_EXPECTED(<trait instance>, true)`.
+ - **`REQUIRES_EXPR(<expression>)`**: Checks if `<expression>` is valid.
+ - **`REQUIRES_EXPR_EXPECTED(<expression>, <expected>)`**: Checks if `<expression>` is valid and yields a value of type `<expected>`.
+ - **`REQUIRES_EXPR_CONVERTIBLE(<expression>, <expected>)`**: Checks if `<expression>` is valid and yields a value convertible to type `<expected>`.
+ - **`REQUIRES_TRAIT_EXPECTED(<trait instance>, <expected>)`**: Checks if a given type-trait/concept instance yields the value (`::value`) `<expected>`.
+ - **`REQUIRES_TRAIT(<trait instance>)`**: Checks if a given type-trait/concept instance is fulfilled. Just an alias of `REQUIRES_TRAIT_EXPECTED(<trait instance>, true)`.
   
 ### Porting existing type-traits and concepts
 
@@ -274,7 +282,7 @@ Wrapping Standard Library type traits is a tiresome task, so worm also provides 
     END_CONCEPT(Concept)
 {% endhighlight %}
 
-Had you noticed the `Ts...` in the `Regulars` message shown above? That's why all the Standard Library concepts were defined from its equivalent type traits through this macro:
+Had you noticed the `Ts...` in the `Regulars` message above? That's why all the Standard Library concepts were defined from their equivalent type traits using this macro:
 
 {% highlight cpp %}
 CONCEPT_FROM_TRAIT(DefaultConstructible, std::is_default_constructible)
@@ -286,15 +294,17 @@ Ignoring the format of the messages, which I'm still not fully satisfied with, t
 
 That's why I have been working on an independent project, [ctti](https://github.com/Manu343726/ctti). ctti provides compile-time type information similar to what `std::type_info` and `std::type_index` give through RTTI, but at compile time. We have ctti working on GCC, Clang, and Visual Studio 2015, so I hope I could use it in worm in a couple of weeks. This is the kind of message I'm pursuing:
 
-> Regulars requires:  
-> While refining (Regular<Head>, Regular<Tail>...) with Regulars: [With Head = int, Tail = (char)]  
-> Regular requires:  
-> While refining (Semiregular<T>, EqualityComparable<T>) with Regular: [With T = int]  
-> Semiregular requires:  
->  "&lvalue<T_>" of type "const T_*" [SUCCEED] [With T_ = int]  
-> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T> >, CopyAssignable<T>) with Semiregular: [With T_ = int]  
-> DefaultConstructible requires:  
->  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED] [With T_ = int]  
+{% highlight text %}
+Regulars requires:  
+While refining (Regular<Head>, Regular<Tail>...) with Regulars: [With Head = int, Tail = (char)]      
+Regular requires:  
+While refining (Semiregular<T>, EqualityComparable<T>) with Regular: [With T = int]  
+Semiregular requires:  
+ "&lvalue<T_>" of type "const T_*" [SUCCEED] [With T_ = int]  
+While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T>, CopyAssignable<T>) with Semiregular: [With T_ = int]  
+DefaultConstructible requires:  
+ "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED] [With T_ = int]  
+{% endhighlight %}
 
 ## Next posts
 
