@@ -12,7 +12,7 @@ date: 2015-08-01T02:05:16+02:00
 
 Before [the acceptance of Concepts Lite TS into C++17](https://www.reddit.com/r/cpp/comments/3dzv6i/eric_niebler_on_twitter_the_concepts_ts_was_voted/), there was a lot of effort out there in the community to make a C++11/14 compatible implementation of Concepts, at least an emulation wrapping the usual SFINAE tricks.  
 Concepts provide nice syntax for concept definition type constraining. No more SFINAE! (I hope). This will make C++ syntax clean in one of the very few points I think C++ still needs a "lifting": templates.   
-Concepts Lite also defines the hierarchical organization of different type concepts that had always been with us, but only as [documentation notes](http://en.cppreference.com/w/cpp/concept). 
+Concepts Lite also defines the hierarchical organization of different type concepts that have always been with us, but only as [documentation notes](http://en.cppreference.com/w/cpp/concept). 
 
 ## Previous work
 
