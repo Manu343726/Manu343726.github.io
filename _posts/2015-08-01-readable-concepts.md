@@ -43,7 +43,7 @@ int main()
 
 {% endhighlight %}
 
-> **foo** does not satisfy the **DefaultConstructible** concept
+> **foo** does not satisfy the **DefaultConstructible** concept  
 
 Compare that to its SFINAE based alternative:
 
@@ -60,7 +60,7 @@ int main()
 
 {% endhighlight %}
 
-> No member named "type" in "std::enable_if<std::is_default_constructible<foo>::value>"
+> No member named "type" in "std::enable_if<std::is_default_constructible<foo>::value>"  
 
 clang at least identifies this pattern and gives you something similar to "Specialization disabled by enable_if".
 
@@ -155,11 +155,11 @@ int main()
 }
 {% endhighlight %}
 
-> Allocatable requires:
-> "new T_" of type "T_*" [SUCCEED]
-> "delete std::declval<T_*>()" [SUCCEED]
-> "new T_[666]" of type "T_*" [SUCCEED]
-> "delete [] new T_[666]" [SUCCEED]
+> Allocatable requires:  
+> "new T_" of type "T_*" [SUCCEED]  
+> "delete std::declval<T_*>()" [SUCCEED]  
+> "new T_[666]" of type "T_*" [SUCCEED]  
+> "delete [] new T_[666]" [SUCCEED]  
 
 ## Defining a concept
 
@@ -204,40 +204,40 @@ int main()
 }
 {% endhighlight %}
 
-> Regulars requires:
-> While refining (Regular<Head>, Regular<Tail>...) with Regulars:
-> Regular requires:
-> While refining (Semiregular<T>, EqualityComparable<T>) with Regular:
-> Semiregular requires:
->  "&lvalue<T_>" of type "const T_*" [SUCCEED]
-> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T> >, CopyAssignable<T>) with Semiregular:
-> DefaultConstructible requires:
->  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED]
-> CopyConstructible requires:
->  "(std::is_copy_constructible<Ts...>)" giving "true" [SUCCEED]
-> Destructible requires:
->  "(std::is_destructible<Ts...>)" giving "true" [SUCCEED]
-> CopyAssignable requires:
->  "(std::is_copy_assignable<Ts...>)" giving "true" [SUCCEED]
-> EqualityComparable requires:
->  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]
->  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]
-> Regular requires:
-> While refining (Semiregular<T>, EqualityComparable<T>) with Regular:
-> Semiregular requires:
->  "&lvalue<T_>" of type "const T_*" [SUCCEED]
-> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T>, CopyAssignable<T>) with Semiregular:
-> DefaultConstructible requires:
->  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED]
-> CopyConstructible requires:
->  "(std::is_copy_constructible<Ts...>)" giving "true" [SUCCEED]
-> Destructible requires:
->  "(std::is_destructible<Ts...>)" giving "true" [SUCCEED]
-> CopyAssignable requires:
->  "(std::is_copy_assignable<Ts...>)" giving "true" [SUCCEED]
-> EqualityComparable requires:
->  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]
->  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]
+> Regulars requires:  
+> While refining (Regular<Head>, Regular<Tail>...) with Regulars:  
+> Regular requires:  
+> While refining (Semiregular<T>, EqualityComparable<T>) with Regular:  
+> Semiregular requires:  
+>  "&lvalue<T_>" of type "const T_*" [SUCCEED]  
+> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T> >, CopyAssignable<T>) with Semiregular:  
+> DefaultConstructible requires:  
+>  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED]  
+> CopyConstructible requires:  
+>  "(std::is_copy_constructible<Ts...>)" giving "true" [SUCCEED]  
+> Destructible requires:  
+>  "(std::is_destructible<Ts...>)" giving "true" [SUCCEED]  
+> CopyAssignable requires:  
+>  "(std::is_copy_assignable<Ts...>)" giving "true" [SUCCEED]  
+> EqualityComparable requires:  
+>  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
+>  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
+> Regular requires:  
+> While refining (Semiregular<T>, EqualityComparable<T>) with Regular:  
+> Semiregular requires:  
+>  "&lvalue<T_>" of type "const T_*" [SUCCEED]  
+> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T>, CopyAssignable<T>) with Semiregular:  
+> DefaultConstructible requires:  
+>  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED]  
+> CopyConstructible requires:  
+>  "(std::is_copy_constructible<Ts...>)" giving "true" [SUCCEED]  
+> Destructible requires:  
+>  "(std::is_destructible<Ts...>)" giving "true" [SUCCEED]  
+> CopyAssignable requires:  
+>  "(std::is_copy_assignable<Ts...>)" giving "true" [SUCCEED]  
+> EqualityComparable requires:  
+>  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
+>  "std::declval<T_>() == std::declval<T_>()" convertible to "bool" [SUCCEED]  
 
 ### Requirements
 
@@ -286,15 +286,15 @@ Ignoring the format of the messages, which I'm still not fully satisfied with, t
 
 That's why I have been working on an independent project, [ctti](https://github.com/Manu343726/ctti). ctti provides compile-time type information similar to what `std::type_info` and `std::type_index` give through RTTI, but at compile time. We have ctti working on GCC, Clang, and Visual Studio 2015, so I hope I could use it in worm in a couple of weeks. This is the kind of message I'm pursuing:
 
-> Regulars requires:
-> While refining (Regular<Head>, Regular<Tail>...) with Regulars: [With Head = int, Tail = (char)]
-> Regular requires:
-> While refining (Semiregular<T>, EqualityComparable<T>) with Regular: [With T = int]
-> Semiregular requires:
->  "&lvalue<T_>" of type "const T_*" [SUCCEED] [With T_ = int]
-> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T> >, CopyAssignable<T>) with Semiregular: [With T_ = int]
-> DefaultConstructible requires:
->  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED] [With T_ = int]
+> Regulars requires:  
+> While refining (Regular<Head>, Regular<Tail>...) with Regulars: [With Head = int, Tail = (char)]  
+> Regular requires:  
+> While refining (Semiregular<T>, EqualityComparable<T>) with Regular: [With T = int]  
+> Semiregular requires:  
+>  "&lvalue<T_>" of type "const T_*" [SUCCEED] [With T_ = int]  
+> While refining (DefaultConstructible<T>, CopyConstructible<T>, Destructible<T> >, CopyAssignable<T>) with Semiregular: [With T_ = int]  
+> DefaultConstructible requires:  
+>  "(std::is_default_constructible<Ts...>)" giving "true" [SUCCEED] [With T_ = int]  
 
 ## Next posts
 
