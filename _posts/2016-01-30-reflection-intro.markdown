@@ -54,7 +54,7 @@ By automatic I mean that you don't have to care about class fields manually: We
 have serialization tools for C++, but these usually cover simple types only
 and leave class serialization up to the user.
 
-### Runtime vs dynamic reflection
+### Static vs dynamic reflection
 
 We all agree that the set of fields and member functions is known at compile 
 time (We are talking about C++ after all, not about Javascript...), so giving
@@ -62,7 +62,7 @@ an standard interface to that information [should be possible](https://www.googl
 that's not very useful if playing with that info means having a codebase that
 looks more like HTML than C++ (Try [Hana](https://github.com/boostorg/hana), it may ease the pain).
 
-So for most of the cases, I don't like compile-time reflection, or to be more
+So for most of the cases, I don't like compile-time (static) reflection, or to be more
 specific, I don't like reflection/type-introspection tools that cannot be
 queried using simple syntax.
 
@@ -126,7 +126,7 @@ more or less:
 *I'm missing something...?*
 
 That's all! I hope you would enjoy it. Here's a little spoiler: 
-Project boostrapping and the reflection system running
+Project bootstrapping and the reflection system running
 
 [![asciicast](https://asciinema.org/a/c13nlez3fhd86xdkicw7l6y8q.png)](https://asciinema.org/a/c13nlez3fhd86xdkicw7l6y8q)
 
