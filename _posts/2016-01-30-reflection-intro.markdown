@@ -103,7 +103,7 @@ reference on how to implement relfection in C++, it's just the way I did it.
 In order to achieve the code above we should realize that:
 
  - **C++ is a statically typed language, but with runtime reflection we are
- introducing runtime typing**: Since functions and filds are queried and accessed
+ introducing runtime typing**: Since functions and fields are queried and accessed
  at runtime, the type of the data depends on runtime values. We need a way to do runtime typing (At least limited) in C++.
  
  - **We have to collect class information in order to store the meta-information**: As I said
