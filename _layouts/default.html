@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+    {% include head.html %}
+
+    <body>
+
+        {% include header.html %}
+
+        {{ content }}
+
+        {% include footer.html %}
+        <script src="/assets/js/jquery.js"></script>
+        <script src="/assets/materialize/js/materialize.min.js"></script>
+        <script>
+$(document).ready(function () {
+    $('.parallax').parallax();
+    $(".button-collapse").sideNav();
+
+    $(window).on('scroll', function () {
+        if ($(this).scrollTop() > 233 && $(this).width() > 900) {
+            $('#nav-title').show();
+            $('#main-nav').css('background-image', 'url("/assets/img/bg.png")');
+            $('#main-nav').css('box-shadow', '0px 2px 5px 0px rgba(0, 0, 0, 0.16), 0px 2px 10px 0px rgba(0, 0, 0, 0.12)');
+            $('#main-nav').addClass('slideInDown');
+        } else if ($(this).width() > 900) {
+            $('#nav-title').hide();
+            $('#main-nav').css('background-image', 'none');
+            $('#main-nav').css('box-shadow', 'none');
+            $('#main-nav').removeClass('slideInDown');
+        }
+    });
+});
+
+function verScroll() {
+    alert($(window).scrollTop());
+}
+        </script>
+    </body>
+
+</html>

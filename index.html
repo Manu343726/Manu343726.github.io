@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<div class="container">
+    <div class="row center-align" id="site-description">
+        <p>
+            <img src="/assets/img/{{site.owner.avatar}}" alt="{{site.owner.name}}">
+        </p>
+        <h5 class="s12">
+            {{site.description-header}}
+        </h5>
+        <p class="container">{{site.description}}</p>
+        <h5 class="center-align"><em>{{site.owner.lema}}</em></h5>
+    </div>
+
+    <h3 class="page-heading">Recent posts</h3>
+
+    <ul class="post-list">
+        {% for post in site.posts %}
+        <li>
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{ post.title }}</span>
+                            <span class="right">{{post.date| date: '%B %d, %Y'}}</span>
+                            <p>
+                                {{ post.content | strip_html | truncatewords:75}}
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{ post.url | prepend: site.baseurl }}">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+</div>
