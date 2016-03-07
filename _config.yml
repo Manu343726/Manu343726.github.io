@@ -2,8 +2,8 @@
 
 title: Manu Sánchez
 locale: en_US
-#url:              http://manu343726.github.io # remote (deploy)
-url: http://127.0.0.1:4000/
+url:              http://manu343726.github.io # remote (deploy)
+#url: http://127.0.0.1:4000/
 markdown: kramdown
 
 description-header: I’m Manu Sánchez, and this is my personal website.
