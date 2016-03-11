@@ -10,7 +10,7 @@ image:
   creditlink: http://manu343726.github.io
 permalink: /about
 ---
-![My helpful screenshot]({{ site.url }}/assets/img/spectrums.jpg)
+![My helpful screenshot]({{ site.url }}assets/img/spectrums.jpg)
 <cite>I'm a programming passionate. Only that. Not a professional, not a guru, only one dev trying to learn more and more each day.</cite>
 
 ### Why?
