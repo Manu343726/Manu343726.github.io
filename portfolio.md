@@ -14,7 +14,16 @@ permalink: /portfolio
 I had no time enough to compile all the things I feel should be part of my portfolio, so here is a useful list
 with links to accounts, projects, etc.
 
-###OSS Community
+### TL;DR:
+
+To summarize a bit:
+
+ - I consider myself a C++ and CMake expert. But since this may be subjective, please check my projects bellow and judge yourselves.
+ - I like game engine development a lot. I used to write 3d rendering engines from scratch (By scratch I mean full software rendering), but now I have no time for that projects, sadly.
+ - Lots of experiments regarding current state of the art C++ features.
+ - Lots of metaprogramming. I like to torture compilers til they segfault or something. *Give me a compiler, and I shall move the world... At compile-time*.
+
+### OSS Community
 
 I have many projects in mind, most of them related to C++ since is my favorite language to work with. This are the most interesting for me:
 
@@ -22,11 +31,11 @@ I have many projects in mind, most of them related to C++ since is my favorite l
 
  - [**Polyop**](https://github.com/Manu343726/Polyop): I was trying to redefine default C++ operators. I want to compare two floats without precission-related issues! All with a clear syntax and performance in mind.
 
- - [**Terminal Workspace**](https://github.com/Manu343726/TerminalWorkspace): Just a bunch of vim plugins and configuration scripts. I'm a terminal guy, my preferred setup includes vim, tmux, and zsh. Those scripts try to automatize the installation and configuration of my setup. As the repo says, no guarantees, works for me at least.
+ - [**Terminal Workspace**](https://github.com/Manu343726/TerminalWorkspace): Just a bunch of vim plugins and configuration scripts. I'm a terminal guy, my preferred setup includes vim, tmux, and zsh. Those scripts try to automatize the installation and configuration of my setup. As the repo says, no guarantees, works for me at least. **Update**: Now I have a proper [dotfiles repository](https://github.com/Manu343726/dotfiles) designed with system bootstrapping in mind. Distro-agnostic package management, simple configuration, etc.
 
- - [**cppascii**](https://github.com/Manu343726/cppascii): A C++ course I'm currently managing for two years at my university. Enter and see how I torture my pupils.
+ - [**cppascii**](https://github.com/Manu343726/cppascii): A C++ course I'm currently managing for two years at my university. Enter and see how I torture my pupils. **Update**: Check [`GueimUCM/siplasplas` project](https://github.com/GueimUCM/siplasplas). This is a course I designed with the people at the Complutense University of Madrid game programming master degree in mind. I show them how to build a modern C++ library (CMake, continuous integration, unit testing, etc) by writing complex C++ features useful for game engines, such as variants, allocators, a reflection engine, etc.
 
- - [**Snail**](https://www.reddit.com/r/cpp/comments/2unezc/snail_continuationready_algorithms_from_stl/): I wanted composable range algorithms for C++, but waiting for Eric Niebler's range library was not an option. Meanwhile, Snail was my answer...
+ - [**Snail**](https://www.reddit.com/r/cpp/comments/2unezc/snail_continuationready_algorithms_from_stl/): I wanted composable range algorithms for C++, but waiting for Eric Niebler's range library was not an option. Meanwhile, Snail was my answer... **Update:** I'm working on a concurrent-continuation library as a *continuation* (no pun intended...) of Snail, basically I want to have a system to write UNIX-like pipelines in C++. This means writing fibers on top of Boost coroutines, lock-free queues, etc. So fun. I hope I will have an alpha version I could share soon.
 
 There are many other projects, check [my github account](https://github.com/Manu343726) if you like.
 
@@ -47,10 +56,18 @@ Here is the complete list of posts I wrote for biicode: http://blog.biicode.com/
 Not C++ only, also CMake (bii is cmake based, so I achieved good cmake skills as needed to do the work), and Python by minor collaboration on the biicode codebase. 
 Also ugly bash and python scripts... Check the CI setup of Boost above, it was quite challenging to trigger CI builds for the multiple Boost examples from one push from the main repository. I cannot wonder why Travis CI has no builtin support for this kind of setup. 
 
+### By Tech
+
+Since September 2015 I'm working at [By Tech](http://www.by.com.es/), a Spanish firm specialized in acess control systems. This means I have been doing a looooot of low level stuff, writing communication protocols by means of modern C++ techniques (I'm so proud of this, I cannot believe such a thing worked...), firmware, etc; sharing my `-pedantic` way of C++ with the rest of the team.
+
+Now I'm so used to remotelly-debug ARM boards with GDB server that I completelly abandoned IDEs in favor of a full-of-awesome-plugins vim setup... I know, I should talk with a psychiatrist.
+
 ### "Academic" C++
 
-Biicode as way to jump into the C++ community, share my work within, and gain my "That crazy spanish in love with templates" reputation.
-At October 2014 I managed [a conference at C/C++ Madrid Meetup](http://www.meetup.com/es/Madrid-C-Cpp/events/205900412/) about C++ metaprogramming, Following with this topic (tmp), I will give another one at [Meeting C++ 2015 conference](https://meetingcpp.com/index.php/tv15/items/4.html) in Berlin this December. Also I'm planning to submit a talk proposal for the Spanish equivalent, [usingstdcpp](http://usingstdcpp.org/using-stdcpp-2015/), scheduled for November 2015.
+Biicode was my way to jump into the C++ community, share my work within, and gain my "That crazy spanish in love with templates" reputation.
+At October 2014 I managed [a conference at C/C++ Madrid Meetup](http://www.meetup.com/es/Madrid-C-Cpp/events/205900412/) about C++ metaprogramming, Following with this topic (tmp), I gave another one at [Meeting C++ 2015 conference](https://meetingcpp.com/index.php/tv15/items/4.html), this with practical use cases in mind (Check [this great post](http://vitiy.info/named-tuple-for-cplusplus/) by Victor Laskin). I also gave a talk on Concepts Lite [at usingstdcpp 2015](http://usingstdcpp.org/using-stdcpp-2015/programa-2015/concepts-lite/) (Spanish) that same year.
+
+Since February 2016 I'm a member of the Spanish body of the ISO C++ Standarization Committee.
 
 ### What about Java?
 
