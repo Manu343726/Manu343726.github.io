@@ -5,7 +5,7 @@ layout: default
 <div class="container">
     <div class="row center-align" id="site-description">
         <p>
-            <img src="/assets/img/{{site.owner.avatar}}" alt="{{site.owner.name}}">
+            <img src="/assets/img/{{site.owner.avatar}}" class="circle" id="main-avatar" alt="{{site.owner.name}}">
         </p>
         <h5 class="s12">
             {{site.description-header}}
@@ -16,7 +16,7 @@ layout: default
 
     <h3 class="page-heading">Recent posts</h3>
 
-    <ul class="post-list">
+    <ul class="post-list no-styled">
         {% for post in site.posts %}
         <li>
             <div class="row">

@@ -5,13 +5,14 @@ locale: en_US
 url:              http://manu343726.github.io # remote (deploy)
 #url: http://127.0.0.1:4000/
 markdown: kramdown
+highlighter: pygments
 
 description-header: I’m Manu Sánchez, and this is my personal website.
 description: I’m mostly a programmer, so the average stuff of this website will be programming related. From my portfolio to some sparse posts explaining the last crazy idea I have implemented with C++. I hope you like it.
 
 owner:
   name: Manu Sánchez
-  avatar: manu-sanchez-off.png
+  avatar: manu.jpg
   lema: (meta)Programming is my only love. C++ for fun and profit 
   email: Manu343726.public@gmail.com
   disqus-shortname: manu343726
