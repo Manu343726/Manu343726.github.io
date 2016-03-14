@@ -184,9 +184,9 @@ the string.
 
 This is a bit tricky: Did you notice I never said "string literals" nor
 "macros"? It's because such constructs (`__PRETTY_FUNCTION__`, `__FUNCSIG__`,
-etc) are not macros **nor string literals** but implementation injected
-expressionsi built on top of standard `__func__`, probably one of the worst
-specified points of the standard...  
+etc) are not macros **nor string literals** but implicitly declared identifiers
+similar to standard `__func__` (From C99, added to C++ with C++11), which is probably 
+one of the worst specified points of the standard...  
 The weird part of CTTI was to write a `constexpr` string class able to build
 substrings **at compile time, with C++11 constexpr only, supporting Visual
 Studio**. *Cannot bold that last item enough. That was such a pain in the ass.
@@ -198,7 +198,7 @@ But, what's a `constexpr` class? What's `constexpr` ?
 
 *Feel free to jump over this if you already know about `constexpr`.*
 
-`constexpr` is feature available since C++11 which gives the possibility of
+`constexpr` is feature available since C++11 which gives the option of
 writing C++ code to be evaluated (Actually interpreted by the compiler) at
 compile time. Here's an example:
 
@@ -222,11 +222,11 @@ a `constexpr` constant. A `constexpr` function is guaranteed to be evaluated at
 compile time as long as its arguments can, like in this case. Else, functions
 are "downgraded" into a normal C++ function, to be evaluated at runtime.
 The `constexpr` constant there is just a way to force `constexpr`
-evaluation of `add()`: These are constexnts that have to be initialized at
+evaluation of `add()`: These are constants that have to be initialized at
 compile time, else compilation fails.
 
 `constexpr` not only applies to plain C functions, but to member functions, even
-**constructors**. So you end up having the avility **to write classes and
+**constructors**. So you end up having the ability **to write classes and
 instancing objects that are completely evaluated at compile time**. That's so
 cool.
 
