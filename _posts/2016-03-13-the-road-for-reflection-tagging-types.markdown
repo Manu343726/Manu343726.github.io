@@ -14,7 +14,7 @@ Something like a month ago I wrote [a post](http://manu343726.github.io/2016/01/
 engine I'm writing as part of a C++ course for people in the game programming
 master degree of my university. Why me, an undergrad that has the end of his CS
 grade faaaaaaar away from his horizon, is giving such a course is a mater of
-another post (A post on *Why I hate the university sooooooo much*"...).
+another post (A post on "*Why I hate the university sooooooo much*"...).
 
 Writing a reflection engine has two primary goals:
 
@@ -23,9 +23,9 @@ Writing a reflection engine has two primary goals:
    game engine but only do *the game*. That is, game programming has become a
    game itself. Regardless you think this is good or not (I think is not, game
    programming is not such a challenging/interesting task that was the old days.
-   But others may think that now everybody could write his own game, which is
+   But others may argue that now everybody could write his own game, which is
    good.), the point is that most game programming courses focus on tools
-   instead of game enignes/design, and people exit the course (the master in
+   instead of game enignes/design, and people leave the course (the master in
    this case) without knowing how these tools work. This is true even in courses
    focused on engine programming, since most people don't have the required
    programming skills to deep into the techniques involved in the implementation
@@ -54,12 +54,12 @@ Since what we are doning with runtime reflection is a kind of dynamic type
 system for C++, the first thing we need is a way to store type information so it
 can be checked at runtime, compare types for equality, etc.
 
-{% highlight cpp %}
+``` cpp
 Type intType = getType<int>();
 Type charType = getType<char>();
 
 assert(intType != charType);
-{% endhighlight %}
+```
 
 C++ already ships a similar feature in its Standard Library by means of the
 `<type_info>` header: **RunTime Type Information**, or RTTI for friends.
@@ -68,13 +68,13 @@ C++ RTTI works by storing type information (Its name, a "unique" identifier,
 etc) as part of the program binary so we can query this info at runtime with the
 [`typeid` operator](http://en.cppreference.com/w/cpp/language/typeid):
 
-{% highlight cpp %}
+``` cpp
 #include <type_info>
 
 auto intType = typeid(int);
 
 std::cout << intType.name(); // Prints "int" ?
-{% endhighlight %}
+```
 
 However standard rtti has some caveats:
 
@@ -132,7 +132,7 @@ wrote the [ctti library](https://github.com/Manu343726/ctti).  CTTI (From
 "*Compile Time Type Information*") aims to provide both demangled
 type names and unique hashes at compile time, thanks to C++11 `constexpr:`
 
-{% highlight cpp %}
+``` cpp
 #include <ctti/type_id.hpp>
 
 constexpr auto intType = ctti::type_id<int>();
@@ -141,39 +141,38 @@ constexpr auto charType = ctti::type_id<char>();
 static_assert(intType != charType, "What???");
 
 std::cout << intType.name(); // Gives "int"
-{% endhighlight %}
+```
 
 ### How it works
 
 This morning as part of the pre-work to write this post I found myself checking
 the code and documentation of Don Williamson's [clReflect
 engine](https://github.com/Celtoys/clReflect), a clang-based reflection engine
-very similar to this one. *Williamson was the lead engine programmer of games
-such as Fable and Splinter Cell Conviction.  
-[Here](http://www.gamasutra.com/view/news/128978/Reflection_in_C_The_simple_implementation_of_Splinter_Cell.php)'s
+very similar to this one. *Williamson was the lead engine programmer of games such 
+as Fable and Splinter Cell Conviction. [Here](http://www.gamasutra.com/view/news/128978/Reflection_in_C_The_simple_implementation_of_Splinter_Cell.php)'s
 a great gamasutra article where he shares the reflection API they wrote for
 Conviction*.
 
 [From clReflect
 wiki](https://bitbucket.org/dwilliamson/clreflect/wiki/GetType%20Discussion):
 
-> ### Simulate C++ RTTI type name retrieval
+> **Simulate C++ RTTI type name retrieval**
 >
 > To relieve the dependency on the typeinfo header, a function similar to this
 > can be introduced:
 >
 
-{% highlight cpp %}
-template <typename TYPE>
-const char* GetTypeName()
-{
-#ifdef _MSC_VER
-   return __FUNCSIG__;
-#else
-   return __PRETTY_FUNCTION__;
-#endif
-}
-{% endhighlight %}
+> ``` cpp
+> template <typename TYPE>
+> const char* GetTypeName()
+> {
+> #ifdef _MSC_VER
+>    return __FUNCSIG__;
+> #else
+>    return __PRETTY_FUNCTION__;
+> #endif
+> }
+```
 
 This trick is exactly what CTTI does.  Using a `constexpr` function CTTI
 "parses" `__FUNCSIG__` and similar expressions at compile time to get the name
@@ -202,14 +201,14 @@ But, what's a `constexpr` class? What's `constexpr` ?
 writing C++ code to be evaluated (Actually interpreted by the compiler) at
 compile time. Here's an example:
 
-{% highlight cpp %}
+``` cpp
 constexpr float add(float x, float y)
 {
     return x + y;
 }
 
 constexpr float FLOAT_CONSTANT = add(0.0f, 1.0f);
-{% endhighlight %}
+```
 This has lots of benefits, since until C++11 the only way to do complex
 computations at compile time was by using hard to read/maintain/easy-to-throw-up
 template meta-programming techniques. And this only involved computations on
@@ -220,23 +219,23 @@ that kind of code in production...*
 In the example above, `add()` is a **`constexpr` function** and `FLOAT_CONSTANT`
 a `constexpr` constant. A `constexpr` function is guaranteed to be evaluated at
 compile time as long as its arguments can, like in this case. Else, functions
-are "downgraded" into a normal C++ function, to be evaluated at runtime.
+are "downgraded" into a normal C++ functions, to be evaluated at runtime.
 The `constexpr` constant there is just a way to force `constexpr`
 evaluation of `add()`: These are constants that have to be initialized at
 compile time, else compilation fails.
 
-`constexpr` not only applies to plain C functions, but to member functions, even
+`constexpr` not only applies to plain C functions, but also to member functions, even
 **constructors**. So you end up having the ability **to write classes and
 instancing objects that are completely evaluated at compile time**. That's so
 cool.
 
 Here's an example of a useful `constexpr` member function: `std::array::size()`:
 
-{% highlight cpp %}
+``` cpp
 std::array<ichar, 1024> buffer;
 
 read(file, &buffer[0], buffer.size());
-{% endhighlight %}
+```
 
 No more `#define LENGTH (x) (sizeof(x)/sizeof(&x[0]))` tricks. No more C arrays
 please. It's 2016 and there's still people introducing bugs in the linux kernel
@@ -245,7 +244,7 @@ because of this... *Hey, would you like to hear a TCP joke?*
 A `constexpr` class is just a class that has at least one `constexpr` declared
 contructor, so the compiler can make instances at compile time:
 
-{% highlight cpp %}
+``` cpp
 class string
 {
 public:
@@ -265,7 +264,9 @@ private:
 };
 
 static_assert(string("foo").size() == string("bar").size(), "???");
-{% endhighlight %}
+```
+
+Also note that `constexpr` implies `inline` linkage. This may be useful when declaring constants, since you're guaranteed to not have [ODR](https://en.wikipedia.org/wiki/One_Definition_Rule) issues when defining the constant at the header. *Why one would care to both declare and define a constant in a header? Well, this just hapenned to me a couple of weeks ago at work, where we have `-Wall -Werror -pedantic` enabled by default and GCC gives you warnings when you don't initialize a constant at its declaration...*
 
 For more info about `constexpr` clases, and `constexpr` in general, I recommend
 [this series](https://akrzemi1.wordpress.com/2011/05/11/parsing-strings-at-compile-time-part-i/)
@@ -276,11 +277,11 @@ on compile time string parsing.
 Now that we have unique IDs and demangled names, let's pack all useful type info in a
 `TypeInfo` `constexpr` class:
 
-{% highlight cpp %}
+``` cpp
 class TypeInfo
 {
 public:
-    TypeInfo(ctti::type_id_t id, std::size_t sizeOf, std::size_t alignment) :
+    constexpr TypeInfo(ctti::type_id_t id, std::size_t sizeOf, std::size_t alignment) :
         _id{id},
         _sizeof{sizeOf},
         _alignment{alignment}
@@ -338,7 +339,9 @@ constexpr TypeInfo charType = TypeInfo::get<char>();
 static_assert(intType != charType, "???");
 
 std::cout << intType.name(); // prints "int"
-{% endhighlight %}
+```
+
+Our `TypeInfo` class takes the type ID, the `sizeof()` of the type, and its alignment, information that will be useful when instancing objects in following posts. Note both its constructor and the `get<T>()` factory are `constexpr`.
 
 ### What's next?
 
@@ -346,3 +349,8 @@ Today we learnt how to write a compile-time type info class with all the
 information we will need to follow with the reflection engine. In next posts we
 will implement `MetaType`, the class that manages runtime types and knows how to
 instance and destroy objects dynamically.
+
+### Acknowledgements
+
+ - Thanks to [Zedalos](http://www.zedalos.org/) for noticing the missing `constexpr` specifier in `TypeInfo` constructor.
+ - Thanks to [sehe](http://stackoverflow.com/users/85371/sehe) for that entertaining trolling session on twitter ;)
