@@ -79,8 +79,20 @@ footer a{
     font-weight: lighter;
 }
 
+h1{
+    font-size: 3.5em;
+}
+
 h2{
-    font-size: 3em;
+    font-size: 2.7em;
+}
+
+h3{
+    font-size: 2em;
+}
+
+code{
+    font-size: 0.9em;
 }
 
 #main-avatar{
