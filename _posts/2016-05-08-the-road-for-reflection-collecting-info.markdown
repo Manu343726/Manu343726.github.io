@@ -30,8 +30,8 @@ std::vector<Object> params = pack_to_vector("hello, world"s, 1);
 vector_call(foo, params); // invokes foo("hello, world", 1);
 ```
 
-*If your were following this series, you may have noticed I've changed the
-name of the class from `cpp::MetaObject` to
+*If your were following this series, you might have noticed I've changed
+the name of the class from `cpp::MetaObject` to
 `cpp::dynamic_reflection::Object`. During this weeks I have been doing
 a full refactoring of the reflection library, splitting it into two
 independent sub-libraries: One for static reflection, and one for dynamic.
@@ -70,6 +70,7 @@ private:
     template<typename MethodType>
     class MethodPointer;
 
+    // Specialization for non-const member functions
     template<typename R, typename C, typename... Args>
     class MethodPointer<R (Class::*)(Args...)> : public MethodInterface
     {
@@ -88,6 +89,8 @@ private:
     private:
         R (Class::*_pointer)(Args...);
     };
+
+    // Specialization for const member functions ...
 };
 ```
 
@@ -132,551 +135,137 @@ Losada Parser, ah sorry, I meant "Dynamic Reflection Library Parser"),
 a libclang based python tool I wrote to help with this pain.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Reflection metadata
+
+First of all, before even considering writing an automation tool, we need
+to decide what data we will need from our C++ classes, which of course
+depends on your needs. If you want object serialization, access to class
+fields only is fine:
+
+``` json
+{
+  "fields": {
+    "field": {
+      "type": "int",
+      "value": "42"
+    },
+    "objectOfInnerClass": {
+      "fields": {
+        "innerMember": {
+          "type": "int",
+          "value": "0"
+        }
+      },
+      "type": "MyClass::InnerClass"
+    },
+    "otherField": {
+      "type": "bool",
+      "value": "0"
+    },
+    "strField": {
+      "type": "std::__cxx11::basic_string<char>",
+      "value": "hello"
+    }
+  },
+  "type": "MyClass"
+}
+```
+
+*That's JSON output of a `MyClass` instance, an example from a tiny
+serialization lib built on top of the dynamic reflection engine. Check the
+repo for `siplasplas/serialization` library if you like.*
+
+Another use case is automatic registration of bindings, where you may need
+the set of public methods of a class:
+
+``` cpp
+#include <chaiscript/chaiscript.hpp>
+#include <chaiscript/chaiscript_stdlib.hpp>
+#include <siplasplas/utility/fusion.hpp>
+#include "myclass.hpp"
+
+int main()
+{
+    chaiscript::ChaiScript chai{chaiscript::Std_Lib::library()};
+
+    cpp::foreach<cpp::static_reflection::Class<MyClass>::Methods>([&](auto method)
+    {
+        using Method = cpp::meta::type_t<decltype(method)>;
+
+        chai.add(chaiscript::fun(Method::get()), Method::spelling());
+    });
+}
+```
+
+*Again, a real example you can check in the repo. Sane users would use
+Boost.Hana instead of my `cpp::foreach()` template.*
+
+To keep things simple, suppose you want reflection of enums (Both
+constants values and their names) and class methods.
+
+*"To keep things simple". If this sounds like I'm an expert on reflection,
+or even like if I know what I'm talking about, don't be confused: The
+former is just the first thing I played with some months ago (i.e. the one
+I'm most confident with) and the latter it's just what I've committed
+less than 72 hours ago. Great post, isn't?*
+
+## Metadata representation
+
+So far we've seen what metadata we need, but not how how to record and
+access it.
+
+Since most (all) of this information is **static**, the simplest way
+I found to access metadata is through templates:
+
+``` cpp
+namespace cpp::static_reflection
+{
+
+template<typename ClassType>
+class Class
+{
+   ...
+};
+
+}
+```
+
+The idea is simple: To access metadata of a class type `T`, use the
+`static_reflection::Class<T>` class. Any entity we reflect will be
+accessible using this API convention. Following with methods:
+
+``` cpp
+namespace cpp::static_reflection
+{
+
+template<typename MethodType, MethodType method>
+class Method
+{
+    ...
+};
+
+}
+```
+
+where `Method` instances have the metadata for the specified `method`:
+
+``` cpp
+class MyClass
+{
+public:
+    void f();
+};
+
+using f_method = cpp::static_reflection::Method<decltype(&MyClass::f), &MyClass::f>;
+
+std::cout << f_method::spelling(); // Gives "f"
+f_method::invoke(MyClass()); // invokes "f" method on temporary MyClass instance
+```
+
+*Why two parameters, one for the type and another for the pointer itself?
+Well, there's no generic way to pass a function pointer as template
+parameter (any non-type template parameter actually). So the only way is
+to pass the pointer type first, then the pointer. Check
+`std::integral_constant` template, it works under the same principle.*
 
 
