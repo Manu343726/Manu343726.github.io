@@ -957,6 +957,10 @@ complex). Some cases:
    the cursor. If it does, `id()` registers the current cursor in
    `boundCursors` with the given name.
 
+Also, I intentionally used my libclang C++ wrapper instead of the libclang
+C API in the examples. The point is that you can build a matchers API for
+any kind of visitation API, regardless of the backend.
+
 I think that's all. I hope you like this, it has been a loooooot of work
 in the last two months.
 
