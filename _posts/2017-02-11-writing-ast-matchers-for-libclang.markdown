@@ -10,7 +10,7 @@ I used to habve that common habit of writing posts about the latest
 *supposedly* cool thing I've been working on. But this has been a weird
 year which I've spent leaving my CS degree (*Why is a matter for another
 post...*), working hard both at work, and at home with my
-latest-but-yet-wip project: siplasplas
+latest-but-yet-wip project: [siplasplas](https://github.com/Manu343726/siplasplas)
 
 Siplasplas started as a C++ course I gave to some people of a game
 programming masters degree in Madrid. The idea of the course was to
@@ -34,7 +34,7 @@ allocators I started working on the implementation for the next topic:
 My goals were clear: These students are used to hear about Unreal Engine
 and its "blueprints", but they usually have no idea how these things work
 and what what they are really doing when writing "C++" with Unreal. By
-"C++" I mean Standard C++ full of magic macros, he usual issue is that the
+"C++" I mean Standard C++ full of magic macros, the usual issue is that the
 average game programming student doesn't know where C++, the standard
 language stuff, ends and where the tricky Unreal features begin. It's
 a blurred line for them.  So the idea was to show them that such features
@@ -535,7 +535,7 @@ classDecl(has(cxxMethod(unless(isStatic()))))
 
 *In the real implementation, matchers like `classDecl()` are implemented
 through a `KindMatcher<Kind>` template and a macro to generate the matcher
-function. Clang does something similar, since there are docens of
+function. Clang does something similar, since there are dozens of
 different kinds of nodes you may want to match.*
 
 ### AstMatchFinder
@@ -633,7 +633,7 @@ Bringing back our initial ASTMatchers example:
 classDecl(has(cxxMethod(unless(isStatic()))))
 ```
 
-what that DSL expression is really doing is:
+What that DSL expression is really doing is:
 
  1. Set up a `ClassDeclMatcher`.
  2. Set a `ChildMatcher` as its inner matcher.
@@ -641,7 +641,7 @@ what that DSL expression is really doing is:
  4. Set an `UnlessMatcher` as the inner matcher of `cxxMethod()`.
  5. Set an `IsStaticMatcher` as the inner matcher of `unless()`.
 
-which in plain English means more or less:
+Which in plain English means more or less:
 
 > Match a cursor with kind `ClassDecl` which has at least one child cursor
 > with kind `CxxMethod`, unless the found method is static.
@@ -739,7 +739,7 @@ Visitor::Result MatchChildVisitor::onCursor(
 
 Basically what we do is test if we match in the current node and continue
 searching, or not to continue down the AST if we already reached the max
-depth. If you look carefuly, with this implementation `_matches` could be
+depth. If you look carefully, with this implementation `_matches` could be
 set to true multiple times, which may seem as a waste of time. This is
 intended, to let binding matchers to find multiple matches and cache all
 the results.
@@ -784,7 +784,7 @@ private:
 
 Note the third argument of the `MatchChildVisitor` constructor: This
 `MatchingAstVisitor` object is a `AstMatchFinder` (We were implementing
-one of the operations of that inertface, right?), so **we can pass this
+one of the operations of that interface, right?), so **we can pass this
 same object as finder for the inner search**.
 
 *`AstMatchFinder::matchesAncestor()` implementation does not use an AST
@@ -828,7 +828,7 @@ private:
 ```
 
 At the beginning of the post we saw that the whole point of ASTMatchers
-API was to define matchers and to be notified whenerver a match is found.
+API was to define matchers and to be notified whenever a match is found.
 `MatchingAstVisitor` takes pairs `(matcher, callback)` and for each node
 in the AST all matchers are tested. If a match is found, the corresponding
 callback is invoked:
