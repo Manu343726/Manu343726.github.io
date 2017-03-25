@@ -1,5 +1,5 @@
 ---
-title: Lock-free job stealing job system with modern c++
+title: Lock-free job stealing with modern c++
 date: 2017-03-13T15:58:13+01:00
 ---
 
