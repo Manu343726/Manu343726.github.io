@@ -1136,7 +1136,7 @@ private:
 
 int main()
 {
-    Parser parser{{
+    Parser parser{ {
         SIPLASPLAS_INCLUDE_DIR "/siplasplas/reflection/parser/api/core/clang/index.hpp"
     }, 4};
     parser.run();
