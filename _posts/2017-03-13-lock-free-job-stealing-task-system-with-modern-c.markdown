@@ -975,7 +975,8 @@ Worker* Engine::randomWorker()
     {
         return nullptr;
     }
-} ```
+}
+```
 
 *Only the currently active because it could happen that a worker continues
 running and asking for worker where to stole jobs, while the other workers
