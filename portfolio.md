@@ -20,12 +20,18 @@ To summarize a bit:
 
  - I consider myself a C++ and CMake expert. But since this may be subjective, please check my projects bellow and judge yourselves.
  - I like game engine development a lot. I used to write 3d rendering engines from scratch (By scratch I mean full software rendering), but now I have no time for that projects, sadly.
- - Lots of experiments regarding current state of the art C++ features.
+ - Lots of experiments regarding state of the art C++ features.
  - Lots of metaprogramming. I like to torture compilers til they segfault or something. *Give me a compiler, and I shall move the world... At compile-time*.
+ - Experience with the Qt framework (Expert at the runtime and API, basic with widgets/UI).
+ - Lots of experience with CI systems (Travis CI, appveyor, youtrack, jenkins, etc).
+ - Agile (Everybody is agile these days...)
+ - Experience with both linux and windows development.
 
 ### OSS Community
 
 I have many projects in mind, most of them related to C++ since is my favorite language to work with. This are the most interesting for me:
+
+ - [**ctti**](https://github.com/Manu343726/ctti): C++ type related information at compile time. Type names, introspection, serialization, etc.
 
  - [**The Turbo C++11 metaprogramming library**](https://github.com/Manu343726/Turbo). Metaprogramming in C++ can be easy! High level constructions to do metaprogramming in C++. Also, can be Haskell simulated on C++ TMP? Can I use exactly the same idioms and type system for C++ metaprogramming? Finally, an experiment about metaprogramming with [Concepts Lite proposal](http://concepts.axiomatics.org/~ans/).
 
@@ -33,7 +39,7 @@ I have many projects in mind, most of them related to C++ since is my favorite l
 
  - [**Terminal Workspace**](https://github.com/Manu343726/TerminalWorkspace): Just a bunch of vim plugins and configuration scripts. I'm a terminal guy, my preferred setup includes vim, tmux, and zsh. Those scripts try to automatize the installation and configuration of my setup. As the repo says, no guarantees, works for me at least. **Update**: Now I have a proper [dotfiles repository](https://github.com/Manu343726/dotfiles) designed with system bootstrapping in mind. Distro-agnostic package management, simple configuration, etc.
 
- - [**cppascii**](https://github.com/Manu343726/cppascii): A C++ course I'm currently managing for two years at my university. Enter and see how I torture my pupils. **Update**: Check [`GueimUCM/siplasplas` project](https://github.com/GueimUCM/siplasplas). This is a course I designed with the people at the Complutense University of Madrid game programming master degree in mind. I show them how to build a modern C++ library (CMake, continuous integration, unit testing, etc) by writing complex C++ features useful for game engines, such as variants, allocators, a reflection engine, etc.
+ - [**cppascii**](https://github.com/Manu343726/cppascii): A C++ course I used to organize in the Complutense University of Madrid. Also [`GueimUCM/siplasplas` project](https://github.com/GueimUCM/siplasplas), which is a course I designed with the people at the Complutense University of Madrid game programming master degree in mind. I show them how to build a modern C++ library (CMake, continuous integration, unit testing, etc) by writing complex C++ features useful for game engines, such as variants, allocators, a reflection engine, etc. The contents of the course ultimately elvolved into the siplasplas reflection library (See "writing a reflection engine from scratch" bellow).
 
  - [**Snail**](https://www.reddit.com/r/cpp/comments/2unezc/snail_continuationready_algorithms_from_stl/): I wanted composable range algorithms for C++, but waiting for Eric Niebler's range library was not an option. Meanwhile, Snail was my answer... **Update:** I'm working on a concurrent-continuation library as a *continuation* (no pun intended...) of Snail, basically I want to have a system to write UNIX-like pipelines in C++. This means writing fibers on top of Boost coroutines, lock-free queues, etc. So fun. I hope I will have an alpha version I could share soon.
 
@@ -66,11 +72,10 @@ Now I'm so used to remotelly-debug ARM boards with GDB server that I completelly
 
 Biicode was my way to jump into the C++ community, share my work within, and gain my "That crazy spanish in love with templates" reputation.
 At October 2014 I managed [a conference at C/C++ Madrid Meetup](http://www.meetup.com/es/Madrid-C-Cpp/events/205900412/) about C++ metaprogramming, Following with this topic (tmp), I gave another one at [Meeting C++ 2015 conference](https://meetingcpp.com/index.php/tv15/items/4.html), this with practical use cases in mind (Check [this great post](http://vitiy.info/named-tuple-for-cplusplus/) by Victor Laskin). I also gave a talk on Concepts Lite [at usingstdcpp 2015](http://usingstdcpp.org/using-stdcpp-2015/programa-2015/concepts-lite/) (Spanish) that same year.
+More C++ related talks were:
+
+ - Meeting C++ 2015 "Template Metaprogramming: Why You Must Get It" [(slides)](http://slides.com/manusanchez/tmpmcpp2015#/)
+ - Meeting C++ 2016 "Writing a reflection engine from scratch" [(slides + examples)](https://github.com/Manu343726/meetingcpp2016)
+ - usingstdcpp 2017 (wip) "Coroutines: Past, Present, and Future" [(link)](https://usingstdcpp.org/)
 
 Since February 2016 I'm a member of the Spanish body of the ISO C++ Standarization Committee.
-
-### What about Java?
-
-I really hate the Java programming language (Please note that I said *the programming language*, not the runtime nor the libraries). It suffers from years of unresolved design errors from its base, a horrible and verbose syntax, and years of not evolving at all (I know about Java 8, but think: That was which C# had 8 years before...).   
-As you can see I strongly prefer C# as a OO VM-based language ("Managed", as Microsoft likes to say), but Java is a very common language in the programming world.  
-So, even if I hate Java, I have an intermediate-low level with it. That's what I think, but [judge by yourselves instead](https://github.com/Manu343726/WALLE).
