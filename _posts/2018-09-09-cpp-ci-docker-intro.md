@@ -1,5 +1,5 @@
 ---
-title: C++ CI adventures with Docker. Introduction
+title: C++ CI adventures with Docker, introduction
 date: 2018-09-09
 ---
 
