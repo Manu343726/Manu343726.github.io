@@ -1,0 +1,37 @@
+---
+layout: post
+title: "A new hope" 
+modified:
+categories: 
+excerpt:
+tags: []
+image:
+  feature:
+date: 2016-04-01T15:14:09+02:00
+---
+
+As you may already know, last C++ standarization committee meeting in Jacksonville
+decided what items will be part of the C++17 standard, what other will be Technical
+Specifications, and want others were rejected at all.
+
+I had a lot of hope in C++17. A lot new of cool features, Concepts, Modules, Coroutines;
+were promised to us. But nothing was approved. This is no longer a major release but a minor
+one. Also, WTF is a Technical Specification?
+
+That's it. I no longer trust C++.
+
+I was proud I joined the Spanish standarization body this February, but no longer I'm. Actually,
+it's one of the worst descissions I have done in my career.  
+Seriously, the whole process was annoying: A day of sect-like tests such as walking on fire and 
+reciting Standard paragraphs from my head like if it was the damn Holy Bible, with other
+committee members around me dressing like Gandalf or something. Trust me, it was
+so disgusting.
+
+That said, I'm happy to announce I have been talking several weeks to join the JCP Executive Committee. 
+This is awesome! I would be able to join a business-directed language committee! 
+I hope I would enjoy a lot the following years refining one of the best examples of software engineering
+in the world, an example of why pure object orientation, fake functional programming, and
+SimpleAndConsiceAPIsThatWorkGreatWithEightyColumnWrapping are the right way to go.
+
+
+I have a new Hope().

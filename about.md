@@ -1,9 +1,16 @@
 ---
 layout: page
 title: About me
-subtitle: My name is Manu Sanchez, and I don't know what I'm doing
+tags: [about]
+modified: 2014-08-08T20:53:07.573882-04:00
+comments: true
+image:
+  feature: spectrums.jpg
+  credit: Manu Sánchez	
+  creditlink: http://manu343726.github.io
+permalink: /about
 ---
-
+![My helpful screenshot]({{ site.url }}assets/img/spectrums.jpg)
 <cite>I'm a programming passionate. Only that. Not a professional, not a guru, only one dev trying to learn more and more each day.</cite>
 
 ### Why?

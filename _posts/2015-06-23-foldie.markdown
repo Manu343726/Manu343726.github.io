@@ -1,0 +1,241 @@
+---
+layout: post
+title: Foldie
+modified:
+categories: 
+excerpt:
+tags: [c++,python,tmp]
+image:
+  feature:
+date: 2015-06-23T13:10:52+02:00
+---
+
+
+I find C++ template metaprogramming so funny. Maybe it's the feel of being hacking the compiler, maybe is just a way to improve my functional programming skills. I'm not sure. But the fact is that I do meta on C++ a lot, and I'm actually used to the way it works and its idiosyncrasies.
+
+In this crazy story, to *run* the metaprogram becomes to compile the c++ program and then see the results. This means the process usually includes feeding some input variables for our metaprogram, compile it, and run the resulting C++ program to see the results. *You can always inspect the assembly and deal with name mangling if you don't want to run the executable...*
+
+Let's write a simple metaprogram: *To generate 100 consecutive numbers at compile-time*.
+
+{% highlight bash %}
+$ mkdir metastuff && cd metastuff
+$ bii init -l
+{% endhighlight %}
+
+`sequence.cpp`
+{% highlight cpp %}
+#include <manu343726/turbo_core/turbo_core.hpp>
+
+using output = tml::integral_range<1,100>;
+
+int main()
+{
+	for(int i : tml::to_runtime<output>())
+		std::cout << i << std::endl;
+}
+{% endhighlight %}
+
+`CMakeLists.txt`
+
+{% highlight cmake %}
+ADD_BIICODE_TARGETS()
+
+target_compile_options(${BII_BLOCK_TARGET} INTERFACE 
+                       -std=c++11 
+                       -ftemplate-depth-10000)
+{% endhighlight %}
+
+Let's build it:
+
+{% highlight bash %}
+$ bii find
+Resolving manu343726/turbo_core dependency...
+$ bii build
+...
+{% endhighlight %}
+
+And then run the executable to see what happened:
+
+{% highlight bash %}
+$ ./bin/manu343726_metastuff_sequence
+1
+2
+3
+...
+99
+{% endhighlight %}
+
+What if i want to run the same metaprogram, but with different arguments? There's no equivalent of `int main(int argc, char* argv[])` for metaprograms. What we probably are going to do is to touch the code and repeat all the build steps above.  
+Trust me, this is so boring. Even more if you want to test your metaprograms multiple times with a widespread set of inputs.
+
+I'm sick of this. There should be a better way to play with C++ template metaprograms. **Okay, there's not, so let's try develop it. Meet [foldie](https://github.com/Manu343726/foldie)**
+
+A run system for C++ template metaprograms
+--------------------------------------------------------
+
+Since running the metaprogram becomes to build the C++ program, a build system becomes a *run system*. I'm going crazy, I know.
+
+So what's our goal? 
+
+ - Pass parameters to the metaprogram in an easy way
+ - Run the metaprogram
+ - See its results (output)
+
+Everything in a human readable way. I love YAML-based configuration, you have been warned.
+
+### Passing parameters to the metaprogram
+
+What's the equivalent of `int main(int argn, char* argv[])`? I'm not sure. Here's my solution: Keep your input *variables* in a header file, then include that file:
+
+`foldie.hpp`
+{% highlight cpp %}
+#ifdef FOLDIE_HPP
+#define FOLDIE_HPP
+
+namespace foldie
+{
+	namespace input
+	{
+		using x = std::integral_constant<int, 1>;
+	}
+}
+
+#endif /* FOLDIE_HPP */
+{% endhighlight %}
+
+Foldie takes its input in the form of a `foldie.yaml` file with the project settings.
+For metaprogram input, just add values to the `input` key:
+
+`foldie.yml`
+{% highlight yaml %}
+input:
+  x: std::integral_constant<int,1>
+{% endhighlight %}
+
+Then foldie will generate a `foldie.hpp` file from your input. Also you can specify a custom header with the `header` entry:
+
+{% highlight yaml %}
+header: foldie.hpp
+{% endhighlight %}
+*Note all files/directories are relative to the `foldie.yml` file.*
+
+### Passing parameters to the metaprogram, director's cut
+
+*"Put each input in the yaml `input` entry"*. Simple and working approach, but still a bit boring, isn't? Since I have done the effort to write this scripts, let's push the thing to the top level. Forget templates. **Enter python values**.
+
+{% highlight yaml %}
+input:
+  x: 1
+  y: [1,2,3,4]
+  z: (1, [], 2)
+{% endhighlight %}
+
+You can even write simple python expressions:
+
+{% highlight yaml %}
+input:
+  list: '[x for x in xrange(0,100)]'
+{% endhighlight %}
+*The single quotes are needed, a matter of how yaml parses the file...*
+
+Then foldie will generate `tml::list<std::integral_constant<int,1>, std::integral_constant<int,1>,...,std::integral_constant<int,99>>` typelist named `foldie::input::list`.
+
+But this does not work with Turbo only. What foldie really does is to figure out what *datatypes* your metaprogramming library has, then translates the python values to your lib equivalents. **This is the `datatypes` entry**:
+
+{% highlight yaml %}
+datatypes:
+  int: std::integral_constant<int,$(1)>
+  list: tml::list<$(...)>
+  float: FLOAT($(1))
+  pair: tml::maps::pair<$(1),$(2)>
+  tuple: tml::list<$(...)>
+  string: tml::list<$(...)>
+  char: std::integral_constant<char, $(1)>
+{% endhighlight %}
+
+The key  of each entry is the name of the equivalent python type, with some exceptions such as `char` and `pair` since python does not handle those types. I added them for convenience.
+
+This is part of the `foldie.yml` file I have written to try foldie with Eric Niebler's Meta:
+
+{% highlight yaml %}
+datatypes:
+  int: std::integral_constant<int,$(1)>
+  list: meta::list<$(...)>
+{% endhighlight %}
+
+The syntax for datatypes is simple: Just write your templates, putting variables on them representing the python input:
+
+ - `$(n)` represents the n-element of the input python value. Note for simple values only `$(1)` variable is valid.
+ - `$(...)` represents the whole python value as a sequence (So it only works with sequence values). That is, think of it as variadic pack expansion. It also supports slices in the form `$(i...j)`, even `$(i...)` or `$(...j)`.
+
+Foldie parses datatypes recursively. So in most situations only one simple variable substitution is needed. See the lists examples above:
+
+{% highlight yaml %}
+datatypes:
+  list: tml::list<$(...)>
+
+input:
+  x: [x for x in xrange(0,100) if x % 2 == 0]
+{% endhighlight %}
+
+The `$(...)` variable there really means "expand whatever elements the sequence has". Before variable substitution foldie always translates variable/s value/s first.
+
+### Building and running
+
+Of course you can run your favorite compiler and then launch the executable. But since the point of foldie is to ease running metaprograms, it provides two extra entries: `build_command` and `run_command`
+
+{% highlight yaml %}
+build_command: bii buzz
+run_command: 'bin/manu343726_foldie-example_main'
+{% endhighlight %}
+*Again, paths are relative to `foldie.yml` file.*
+
+Running foldie
+------------------
+
+Foldie is shipped as a bash executable script which calls the `foldie.py` script. Let's see foldie's help message:
+
+{% highlight bash %}
+$ foldie -h
+usage: foldie.py [-h] [--project PROJECT] [--verbose] {build,buzz,run}
+
+C++ metaprogramming run system
+
+positional arguments:
+  {build,buzz,run}   foldie command to be run
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --project PROJECT  foldie project YAML file
+  --verbose, -v
+{% endhighlight %}
+
+We have three commands:
+
+ - `foldie build`: Build metaprogram. Does all the processing, parsing input, generating foldie input header, then calling the build command.
+ - `foldie run`: Just calls the output executable, supposed to see the output.
+ - `foldie buzz`: Calls two commands above, for easy running.
+ 
+ Also we have a `--project` argument which can be used to pass an alternative `foldie.yml` file (Foldie supposes it's the `foldie.yml` file located on the current directory by default) and an incremental verbose flag.
+
+Let's write a simple foldie example step by step:
+
+{% highlight bash %}
+$ mkdir foldie_example
+$ cd foldie_example
+$ vim foldie.yml
+{% endhighlight %}
+
+`foldie.yml`
+{% highlight yaml %}
+datatypes:
+  int: std::integral_constant<int, $(1)>
+  list: meta::list<$(...)>
+
+input:
+  x: 99                                       
+{% endhighlight %}
+
+**TODO**: C++ snippet example
+
+> Written with [StackEdit](https://stackedit.io/).
