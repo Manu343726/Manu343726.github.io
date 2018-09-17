@@ -1,12 +1,8 @@
 ---
 layout: post
 title: "User Friendly C++14 Concepts"
-modified:
 categories: 
-excerpt:
 tags: [c++]
-image:
-  feature:
 date: 2015-08-01T02:05:16+02:00
 ---
 

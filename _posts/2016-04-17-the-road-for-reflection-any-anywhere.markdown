@@ -2,11 +2,7 @@
 layout: post
 title: Objects anywhere, anytime
 modified:
-categories: C++
-excerpt:
-tags: [C++]
-image:
-  feature:
+tags: [c++,reflection,datatypes]
 date: 2016-04-17T19:51:34+02:00
 comments: true
 ---

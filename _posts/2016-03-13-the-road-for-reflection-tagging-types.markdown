@@ -1,12 +1,8 @@
 ---
 layout: post
 title: "The road for reflection: Tagging types"
-modified:
 categories: 
-excerpt:
-tags: []
-image:
-  feature:
+tags: [c++,reflection]
 date: 2016-03-13T16:35:00+01:00
 ---
 

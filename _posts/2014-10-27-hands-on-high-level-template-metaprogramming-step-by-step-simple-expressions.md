@@ -1,12 +1,7 @@
 ---
 layout: post
 title: "High Level Template Metaprogramming, Step by Step: Simple Expressions"
-modified:
-categories: C++
-excerpt:
-tags: [C++,template-meta-programming,biicode]
-image:
-  feature:
+tags: [c++,tmp,biicode]
 date: 2014-10-27T11:52:35+01:00
 ---
 

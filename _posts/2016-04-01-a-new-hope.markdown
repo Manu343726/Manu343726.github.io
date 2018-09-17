@@ -1,12 +1,9 @@
 ---
 layout: post
 title: "A new hope" 
-modified:
 categories: 
 excerpt:
-tags: []
-image:
-  feature:
+tags: [java,iso]
 date: 2016-04-01T15:14:09+02:00
 ---
 

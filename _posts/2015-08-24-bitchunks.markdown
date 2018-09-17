@@ -1,12 +1,8 @@
 ---
 layout: post
 title: "Bitchunks"
-modified:
 categories:
-excerpt:
-tags: []
-image:
-  feature:
+tags: [c++,abstractions,datatypes]
 date: 2015-08-24T09:47:25+02:00
 ---
 

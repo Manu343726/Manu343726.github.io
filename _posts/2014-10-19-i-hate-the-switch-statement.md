@@ -1,12 +1,7 @@
 ---
 layout: post
 title: I Hate the Switch Statement
-modified:
-categories: C++
-excerpt:
 tags: [C++]
-image:
-  feature:
 date: 2014-10-19T01:46:34+02:00
 comments: true
 ---

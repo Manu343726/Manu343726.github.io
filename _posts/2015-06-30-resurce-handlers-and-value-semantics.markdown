@@ -1,12 +1,8 @@
 ---
 layout: post
 title: "Resurce Handlers and Value Semantics"
-modified:
 categories: 
-excerpt:
-tags: [c++]
-image:
-  feature:
+tags: [c++,good-practices]
 date: 2015-06-30T02:05:16+02:00
 ---
 

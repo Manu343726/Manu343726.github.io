@@ -1,6 +1,8 @@
 ---
 title: C++ CI adventures with Docker, introduction
 date: 2018-09-09
+tags: [c++,docker,ci]
+comments: true
 ---
 
 It's been more than a year since I wrote my last blog post. Lot's of stuff happened this last year, ranging from learning QML to get as much LEGO Technic as possible as a kind of long term investment (Ok, and to satisfy my inner child).  

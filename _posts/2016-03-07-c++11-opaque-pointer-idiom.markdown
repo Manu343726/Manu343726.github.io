@@ -1,12 +1,8 @@
 ---
 layout: post
 title: C++11 Opaque Pointer Idiom
-modified:
 categories: 
-excerpt:
-tags: []
-image:
-  feature:
+tags: [c++,good-practices]
 date: 2016-03-07T09:55:00+01:00
 ---
 

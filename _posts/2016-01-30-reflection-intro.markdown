@@ -1,12 +1,8 @@
 ---
 layout: post
 title: Reflection (Intro)
-modified:
 categories: 
-excerpt:
-tags: []
-image:
-  feature:
+tags: [c++,reflection]
 date: 2016-01-30T01:05:23+01:00
 ---
 
