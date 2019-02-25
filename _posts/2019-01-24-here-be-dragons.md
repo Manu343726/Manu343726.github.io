@@ -93,6 +93,10 @@ message(STATUS "Conan setup done. CMAKE_PROGRAM_PATH: ${{CMAKE_PROGRAM_PATH}}")
 The most important line is `list(APPEND CMAKE_PROGRAM_PATH
 ${{CONAN_BIN_DIRS}})` which adds the `bin/` directories of the conan
 dependencies to the set of paths that CMake uses to search programs
-through `find_program()` calls. This allows components such as Clang or
-libc++ **to find llvm-config utility from LLVM**, which is compiled and
-packaged by the LLVM build.
+through
+[`find_program()`](https://cmake.org/cmake/help/latest/command/find_program.html)
+calls. This allows components such as Clang or libc++ **to find
+llvm-config utility from LLVM**, which is compiled and packaged by the
+LLVM build. LLVM components use `llvm-config` to figure out where LLVM was
+installed (The LLVM conan package directory in this case) and get the
+common CMake scripts from there.
