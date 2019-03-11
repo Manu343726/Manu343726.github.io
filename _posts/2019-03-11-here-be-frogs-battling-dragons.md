@@ -5,8 +5,9 @@ tags: [c++,conanio]
 comments: true
 ---
 
-As usually I like to start my blog posts reflecting a bit about my work.
-For the past two years I have been trying to get a solution for C++ static
+*As usually I like to start my blog posts reflecting a bit about my work:*
+
+For the past three years I have been trying to get a solution for C++ static
 reflection that's cross platform and "clean" enough to be usable in real
 world projects. Or at least to be usable in production by me and my team.
 My first attempt was
