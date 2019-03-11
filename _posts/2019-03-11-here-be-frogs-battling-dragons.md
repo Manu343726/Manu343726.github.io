@@ -197,7 +197,7 @@ you have to build it as part of LLVM or **build it out of LLVM
 sourcetree** ***somehow***.
 
 After almost a year and a half of trial and error, inheriting from some
-[earlier
+[early
 attempts](https://bintray.com/conan/conan-transit/llvm%3Asmspillaz),
 I found a way to build each component separately in its own package:
 **Patch the main CMakeLists.txt file of the component to import the CMake
@@ -543,7 +543,7 @@ int main(int argc, char* argv[])
 ## What's next?
 
 Well, I would say the first next step is to add windows workers to the CI
-pipeline. I already did some earlier tests of this recipes on windows and
+pipeline. I already did some early tests of this recipes on windows and
 it seems to work ok, so I will push the work once I begin working on MSVC
 support for tinyrefl (See tinyrefl roadmap
 [here](https://github.com/Manu343726/tinyrefl/releases/tag/v0.3.3)).  
