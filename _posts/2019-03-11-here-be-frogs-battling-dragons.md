@@ -12,7 +12,7 @@ reflection that's cross platform and "clean" enough to be usable in real
 world projects. Or at least to be usable in production by me and my team.
 My first attempt was
 [siplasplas](https://github.com/Manu343726/meetingcpp2016), but it didn't
-scalate well at the end because of the lack of metadata codegen
+scale well at the end because of the lack of metadata codegen
 customization (The One Ring To Rule Them All implementation didn't work as
 expected...), lack of cross-compilation support (No1 requirement for me
 since I work with ARM embedded systems), and the fact that I was using the
