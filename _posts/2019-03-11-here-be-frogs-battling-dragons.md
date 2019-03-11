@@ -264,7 +264,7 @@ free.
 > I had to leave a dependency on zlib and libtinfo for lack of time, but
 > I plan to rebuild the packages with zero system deps asap.
 
-After that point the build just the usual build of an LLVM component, as
+After that point the build is just the usual build of an LLVM component, as
 if you were following the manual. Just `make -j$(nproc)` and go watch the
 director's cut of The Lord Of The Rings.
 
@@ -348,7 +348,7 @@ So, the plan is the following:
 4. Try to reuse as much recipe code as possible.
 
 Points 1. and 3. are the usual monkey manual work that requires patience
-and tens of litres of coffee. I managed to get the work done in one of my
+and tens of liters of coffee. I managed to get the work done in one of my
 *straight-12-hours-not-moving-my-ass-from-the-computer* weekend
 programming sessions by a combination of manually inspecting each library
 `CMakeLists.txt` file and
