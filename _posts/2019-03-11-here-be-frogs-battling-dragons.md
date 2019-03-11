@@ -51,7 +51,8 @@ cmake scripts? Require everything to be installed in the system? Neither
 of those, let's forward all the hard problems to
 [conan](https://conan.io/).
 
-!["Are you a frog?" by @lizardseraphim](/img/frog_vs_dragon.jpg)
+!["Are you a frog?" by @lizardseraphim](/img/frog_vs_dragon.jpg)  
+*"Are you a frog?" by [@lizardseraphim](https://www.deviantart.com/lizardseraphim)*
 
 ## Brief intro to conan recipes
 
@@ -469,6 +470,65 @@ Add [an horrendous CI
 pipeline](https://gitlab.com/Manu343726/clang-conan-packages/pipelines/47557929)
 to the mix and that's it, one conan package for each Clang and LLVM
 libraries.
+
+## Great, but show me an example please
+
+Here you go: This is a [real cppast
+hello-world example](https://gitlab.com/Manu343726/foonan/tree/master/cppast) using conan to get the
+cppast library and its libclang dependency:
+
+``` cmake
+# CMakeLists.txt
+
+cmake_minimum_required(VERSION 2.8.1)
+project(cppast-example)
+
+include(${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
+
+add_executable(ast_printer ast_printer.cpp)
+target_link_libraries(ast_printer PRIVATE CONAN_PKG::cppast)
+
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/example.hpp" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+```
+
+``` cpp
+// Copyright (C) 2017-2018 Jonathan Müller <jonathanmueller.dev@gmail.com>
+// This file is subject to the license terms in the LICENSE file
+// found in the top-level directory of this distribution.
+
+/// \file
+/// This is a very primitive version of the cppast tool.
+///
+/// Given an input file it will print the AST.
+
+#include <cppast/visitor.hpp> // visit()
+
+#include "example_parser.hpp"
+
+void print_ast(const cppast::cpp_file& file)
+{
+    std::string prefix;
+    // visit each entity in the file
+    cppast::visit(file, [&](const cppast::cpp_entity& e, cppast::visitor_info info) {
+        if (info.event == cppast::visitor_info::container_entity_exit) // exiting an old container
+            prefix.pop_back();
+        else if (info.event == cppast::visitor_info::container_entity_enter)
+        // entering a new container
+        {
+            std::cout << prefix << "'" << e.name() << "' - " << cppast::to_string(e.kind()) << '\n';
+            prefix += "\t";
+        }
+        else // if (info.event == cppast::visitor_info::leaf_entity) // a non-container entity
+            std::cout << prefix << "'" << e.name() << "' - " << cppast::to_string(e.kind()) << '\n';
+    });
+}
+
+int main(int argc, char* argv[])
+{
+    return example_main(argc, argv, {}, &print_ast);
+}
+```
 
 ## What's next?
 
