@@ -203,6 +203,14 @@ I found a way to build each component separately in its own package:
 **Patch the main CMakeLists.txt file of the component to import the CMake
 scripts from LLVM**:
 
+{% comment %}  
+This whole section is wrapped by a [raw block](https://stackoverflow.com/questions/24102498/escaping-double-curly-braces-inside-a-markdown-code-block-in-jekyll) so that
+double curly braces (from the Jinja2 template bellow escaping CMake variables)
+are not interpreted by the Jekyll engine as variables.
+
+Yeah, this is so meta.
+{% endcomment %}
+{% raw %}  
 ``` python
 def source(self):
     replace_in_file(self._root_cmake_file, r'project\((.+?)\)',
@@ -229,6 +237,7 @@ llvm-config utility from LLVM**, which is compiled and packaged by the
 LLVM build. LLVM components use `llvm-config` to figure out where LLVM was
 installed (The LLVM conan package directory in this case) and get the
 common CMake scripts from there.
+{% endraw %}
 
 > Note that conan recipes are Python scripts. You're free to add as much
 > extra class methods, properties, etc to your recipe class as you may
