@@ -5,6 +5,8 @@ tags: [c++]
 comments: true
 ---
 
+## If C++ was a modern language...
+
 For one reason or another I find myself doing a lot of python lately. The
 experience I'm gaining with it brings some ideas and inspiration when I'm
 lucky enough to touch C++ again. One example is my latest project,
@@ -22,6 +24,11 @@ reflection and decorators to declare unit tests.
 > like calling the steam engine "Modern" because it's being compared with
 > Egiptian slaves pushing giant stone blocks on ramps to build piramid
 > looking structures.
+
+Look, live preview!
+
+Note that markdown features such as *italic* or **bold** are hidden if not
+being edited.
 
 The point of the `unittest` project is not whether the
 `assert_called_with()` syntax is the best alternative for unit testing,
@@ -98,7 +105,7 @@ struct ExampleTestCase : public unittest::TestCase
 }
 ```
 
-and its owput:
+and its output:
 
 ```
 test_another_one_bites_the_dust (test_example::ExampleTestCase) ... FAIL
@@ -124,6 +131,8 @@ Ran 1 tests in  0.002s
 
 FAILED (failures=1)
 ```
+
+## Unleash the beast!
 
 `unittest` does a lot of black magic behind the scenes to get an example
 that concise (Generates a `main.cpp` file that includes all your unit test
@@ -240,6 +249,8 @@ Having user defined attributes accesible through reflection is great, but
 having to work this way is not. Once attributes are not mere tags we're
 doomed.
 
+## What I would like to see
+
 Let's take another example, very common in the gamedev world: A value
 exposed to the engine GUI that is clamped in some way:
 
@@ -276,9 +287,12 @@ a pretty instance of the `Range` class.
 
 So: **How could we make C++ user defined attributes be classes too?**
 
-Here's an idea:
+## Attribute classes for C++
 
-1. **Find a class named as the attribute**:
+With my `tinyrefl` library and a bit of imagination I think attribute classes
+could be implemented for C++14 following three "simple" steps:
+
+### 1. Find a class named as the attribute
 
 This is similar to what we've done with `unittest`, use `tinyrefl` global
 reflection info to find a class with that name:
@@ -311,7 +325,7 @@ constexpr auto get_attribute(const Metaobject&)
 }
 ```
 
-2. **Check if the class is an attribute**:
+### 2. Check if the class is an attribute
 
 We could do it the C# way and inherit from an `attribute` class:
 
@@ -376,13 +390,18 @@ constexpr auto get_attribute(const Metaobject&)
 }
 ```
 
-3. **Parse attribute arguments**:
+### 3. Parse attribute arguments
 
 The ideal would be to generate a tuple (`std::tuple` is `constexpr`!) from
 the attribute arguments. I think both [Hana
 Dusíková](https://github.com/hanickadot/compile-time-regular-expressions)
 and [Jonathan Müller](https://github.com/foonathan/lex) would have some
 suggestions for this.
+
+> **UPDATE:** [Hana gave me a lot of
+> feedback](https://twitter.com/hankadusikova/status/1121104154481635329) and
+> we decided a C++ 14 backport of her CTLL library will be the best option.
+> Thanks again Hana!
 
 Once you get the tuple of arguments, it's just
 a [`std::apply()`](https://en.cppreference.com/w/cpp/utility/apply) call
@@ -400,6 +419,8 @@ constexpr auto get_attribute(const Metaobject&)
     }, parse_args(attribute_info));
 }
 ```
+
+## The result
 
 The final user side snippet would look something like this:
 
