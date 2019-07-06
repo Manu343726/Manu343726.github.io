@@ -30,7 +30,7 @@ thinkabout a new hobby project to distract myself from my main project
 This was not the first time I read Shirley's books, but now I wanted to read
 the books in depth while working on my own implementation.
 
-## The implementaton
+## The implementation
 
 I called my implementation `raytracer` (*Naming is hard, you know...*), and
 hosted it [on github](https://github.com/Manu343726/raytracer).
