@@ -246,7 +246,8 @@ void kernel(
 
 which produces an image like the following:
 
-![Mandelbrot set 800x600 100x iterations](mandelbrot.img)
+![](/img/mandelbrot.img)  
+*Mandelbrot set 800x600 100x iterations*
 
 This image was generated with the 4K JSON config shown before, but changing the
 resolution to 800x600:
@@ -924,6 +925,6 @@ $ ./bin/raytracer -c ../settings.json                                           
 
 And the resulting image:
 
-![](raytracer.png)
+![](/img/raytracer.png)
 
 I will update the post with new images while completing the rest of the chapters of the books.
