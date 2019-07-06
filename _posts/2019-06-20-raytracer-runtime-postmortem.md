@@ -246,7 +246,7 @@ void kernel(
 
 which produces an image like the following:
 
-![](/img/mandelbrot.img)  
+![](/img/mandelbrot.png)  
 *Mandelbrot set 800x600 100x iterations*
 
 This image was generated with the 4K JSON config shown before, but changing the
