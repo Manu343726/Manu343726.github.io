@@ -1,8 +1,11 @@
 ---
+title: 'High Level Template Metaprogramming, Step by Step: Simple Expressions'
+date: 2014-10-27 03:52:35 -07:00
+tags:
+- c++
+- tmp
+- biicode
 layout: post
-title: "High Level Template Metaprogramming, Step by Step: Simple Expressions"
-tags: [c++,tmp,biicode]
-date: 2014-10-27T11:52:35+01:00
 ---
 
 I you are one of who have been following our [post series](http://blog.biicode.com/template-metaprogramming-cpp-ii/) about template metaprogramming with modern C++, at this time you should have become a C++ template Guru. At least thats what I expect ;).   

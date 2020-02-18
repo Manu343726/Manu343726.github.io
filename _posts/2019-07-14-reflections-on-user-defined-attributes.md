@@ -1,7 +1,8 @@
 ---
 title: Reflections On User Defined Attributes
-date: 2019-07-14
-tags: [c++]
+date: 2019-07-14 00:00:00 -07:00
+tags:
+- c++
 comments: true
 ---
 

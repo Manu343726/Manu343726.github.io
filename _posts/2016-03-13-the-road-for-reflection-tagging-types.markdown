@@ -1,9 +1,10 @@
 ---
+title: 'The road for reflection: Tagging types'
+date: 2016-03-13 08:35:00 -07:00
+tags:
+- c++
+- reflection
 layout: post
-title: "The road for reflection: Tagging types"
-categories: 
-tags: [c++,reflection]
-date: 2016-03-13T16:35:00+01:00
 ---
 
 Something like a month ago I wrote [a post](http://manu343726.github.io/2016/01/30/reflection-intro.html) introducting the reflection

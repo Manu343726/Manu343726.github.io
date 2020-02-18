@@ -1,9 +1,9 @@
 ---
+title: RAII for API, Naked Ptrs for Internals?
+date: 2015-06-27 05:27:10 -07:00
+tags:
+- c++
 layout: post
-title: "RAII for API, Naked Ptrs for Internals?"
-categories: 
-tags: [c++]
-date: 2015-06-27T14:27:10+02:00
 ---
 
 It's well stablished that having raw pointers as part of a C++ API is not a good practice since it's not clear who (The user or the API internals) manages the resource. Consider:

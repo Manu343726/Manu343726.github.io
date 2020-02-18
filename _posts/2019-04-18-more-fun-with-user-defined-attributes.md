@@ -1,7 +1,8 @@
 ---
-title: (More) Fun with user defined attributes
-date: 2019-04-18
-tags: [c++]
+title: "(More) Fun with user defined attributes"
+date: 2019-04-18 00:00:00 -07:00
+tags:
+- c++
 comments: true
 ---
 

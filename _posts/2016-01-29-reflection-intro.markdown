@@ -1,9 +1,10 @@
 ---
-layout: post
 title: Reflection (Intro)
-categories: 
-tags: [c++,reflection]
-date: 2016-01-30T01:05:23+01:00
+date: 2016-01-29 16:05:23 -08:00
+tags:
+- c++
+- reflection
+layout: post
 ---
 
 For three years I have been giving some C++ courses in my university as part

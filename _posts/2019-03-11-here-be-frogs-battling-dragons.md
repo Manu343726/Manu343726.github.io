@@ -1,7 +1,9 @@
 ---
 title: Here be frogs battling dragons
-date: 2019-03-11
-tags: [c++,conanio]
+date: 2019-03-11 00:00:00 -07:00
+tags:
+- c++
+- conanio
 comments: true
 ---
 

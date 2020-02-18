@@ -1,7 +1,8 @@
 ---
 title: Always measure (A raytracing runtime post-mortem)
-date: 2019-06-20
-tags: [c++]
+date: 2019-06-20 00:00:00 -07:00
+tags:
+- c++
 comments: true
 ---
 

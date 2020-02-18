@@ -1,10 +1,12 @@
 ---
-layout: post
 title: I Hate the Switch Statement
-tags: [C++]
-date: 2014-10-19T01:46:34+02:00
+date: 2014-10-18 16:46:34 -07:00
+tags:
+- C++
+layout: post
 comments: true
 ---
+
 C++ inherits many of its features from the C programming language, some of them fit well with modern programming, and some others do not.     
 One cathegory of such features is the syntax for flow control, where the C language stands above the rest of the languages thanks to some constructions able to do almost any trick you can ever imagine. 
 

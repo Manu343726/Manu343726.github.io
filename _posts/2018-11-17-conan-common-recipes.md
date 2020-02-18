@@ -1,7 +1,9 @@
 ---
 title: Writing reusable base recipes for conan.io packages
-date: 2018-11-17
-tags: [c++,conanio]
+date: 2018-11-17 00:00:00 -08:00
+tags:
+- c++
+- conanio
 comments: true
 ---
 

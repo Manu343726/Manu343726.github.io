@@ -1,9 +1,11 @@
 ---
+title: Bitchunks
+date: 2015-08-24 00:47:25 -07:00
+tags:
+- c++
+- abstractions
+- datatypes
 layout: post
-title: "Bitchunks"
-categories:
-tags: [c++,abstractions,datatypes]
-date: 2015-08-24T09:47:25+02:00
 ---
 
 *I would have liked to talk about Concepts Lite, but I'm still working on contiguous integration support for the examples I want to share. Maybe in a couple of weeks.*

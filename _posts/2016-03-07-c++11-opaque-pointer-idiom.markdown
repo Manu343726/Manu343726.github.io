@@ -1,9 +1,10 @@
 ---
-layout: post
 title: C++11 Opaque Pointer Idiom
-categories: 
-tags: [c++,good-practices]
-date: 2016-03-07T09:55:00+01:00
+date: 2016-03-07 00:55:00 -08:00
+tags:
+- c++
+- good-practices
+layout: post
 ---
 
 *This was originally a wiki entry I was writing for the [By Tech](http://www.by.com.es/) internal development wiki this morning, but I thought it's the kind of simple and useful tip that deserves a blog post...*

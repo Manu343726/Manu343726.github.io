@@ -1,9 +1,10 @@
 ---
+title: Resurce Handlers and Value Semantics
+date: 2015-06-29 17:05:16 -07:00
+tags:
+- c++
+- good-practices
 layout: post
-title: "Resurce Handlers and Value Semantics"
-categories: 
-tags: [c++,good-practices]
-date: 2015-06-30T02:05:16+02:00
 ---
 
 Before C++11, implementing correct value semantics for a class was a complete pain: You must deal with the constructor, copy constructor, (copy) assignment operator, and then the destructor. Also you had to take some care since those semantics are tightly coupled between that special member functions, so the compiler may reject to provide a default implementation for any of these if you break the semantics of at least one. As you might know, this rule of thumb is known as [*"The Rule Of Three"*](http://stackoverflow.com/questions/4172722/what-is-the-rule-of-three).

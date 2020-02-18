@@ -1,7 +1,10 @@
 ---
 title: C++ CI adventures with Docker, introduction
-date: 2018-09-09
-tags: [c++,docker,ci]
+date: 2018-09-09 00:00:00 -07:00
+tags:
+- c++
+- docker
+- ci
 comments: true
 ---
 

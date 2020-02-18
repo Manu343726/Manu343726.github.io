@@ -1,9 +1,12 @@
 ---
-layout: post
 title: Objects anywhere, anytime
-modified:
-tags: [c++,reflection,datatypes]
-date: 2016-04-17T19:51:34+02:00
+date: 2016-04-17 10:51:34 -07:00
+tags:
+- c++
+- reflection
+- datatypes
+layout: post
+modified: 
 comments: true
 ---
 

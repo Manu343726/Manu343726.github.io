@@ -1,7 +1,9 @@
 ---
 title: Emulating reflection proposals
-date: 2017-05-07
-tags: [c++,reflection]
+date: 2017-05-07 00:00:00 -07:00
+tags:
+- c++
+- reflection
 ---
 
 Despite this year is being far less productive than I expected (*Well, that's not fair, past year I used to work from 09:00 to 18:00 + 3h of commuting, then play with C++ from 22:00 to 02:00-06:00 depending on the day. I was so exhausted by the end of the year I decided to slow down my C++ fever a bit*), I'm still throwing commits from time to time towards the refactorization of siplasplas (See [the previous post](https://manu343726.github.io/2017/03/13/lock-free-job-stealing-task-system-with-modern-c.html)), also, while not actively working on the project nor involved in the last cool C++ conferences, I try to be in sync of the latest work on this topic.

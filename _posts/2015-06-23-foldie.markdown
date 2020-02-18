@@ -1,10 +1,12 @@
 ---
-layout: post
 title: Foldie
-tags: [c++,python,tmp]
-date: 2015-06-23T13:10:52+02:00
+date: 2015-06-23 04:10:52 -07:00
+tags:
+- c++
+- python
+- tmp
+layout: post
 ---
-
 
 I find C++ template metaprogramming so funny. Maybe it's the feel of being hacking the compiler, maybe is just a way to improve my functional programming skills. I'm not sure. But the fact is that I do meta on C++ a lot, and I'm actually used to the way it works and its idiosyncrasies.
 

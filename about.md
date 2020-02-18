@@ -1,15 +1,17 @@
 ---
-layout: page
 title: About me
-tags: [about]
-modified: 2014-08-08T20:53:07.573882-04:00
+permalink: "/about"
+layout: page
+tags:
+- about
+modified: 2014-08-08 17:53:07.573000000 -07:00
 comments: true
 image:
   feature: spectrums.jpg
-  credit: Manu Sánchez	
+  credit: Manu Sánchez
   creditlink: http://manu343726.github.io
-permalink: /about
 ---
+
 ![My helpful screenshot]({{ site.url }}assets/img/spectrums.jpg)
 <cite>I'm a programming passionate. Only that. Not a professional, not a guru, only one dev trying to learn more and more each day.</cite>
 

@@ -1,7 +1,10 @@
 ---
 title: Lock-free job stealing with modern c++
-date: 2017-03-13T15:58:13+01:00
-tags: [c++,datatypes,lock-free]
+date: 2017-03-13 07:58:13 -07:00
+tags:
+- c++
+- datatypes
+- lock-free
 ---
 
 In [my previous post](http://manu343726.github.io/2017/02/11/writing-ast-matchers-for-libclang.html) I (re)introduced you to my main personal project,

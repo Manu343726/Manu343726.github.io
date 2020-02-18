@@ -1,8 +1,10 @@
 ---
+title: Haskellizing C++ template metaprogramming
+date: 2015-03-19 03:25:20 -07:00
+tags:
+- c++
+- tmp
 layout: post
-title: "Haskellizing C++ template metaprogramming"
-tags: [c++,tmp]
-date: 2015-03-19T11:25:20+01:00
 comments: true
 ---
 

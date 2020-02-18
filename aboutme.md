@@ -1,6 +1,6 @@
 ---
-layout: page
 title: About me
+layout: page
 subtitle: My name is Manu Sanchez, and I don't know what I'm doing
 ---
 
