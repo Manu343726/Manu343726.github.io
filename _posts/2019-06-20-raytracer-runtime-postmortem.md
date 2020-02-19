@@ -6,22 +6,22 @@ tags:
 comments: true
 ---
 
-Most of my colleages don't know I'm a big fan of graphics programming and that
+Most of my colleagues don't know I'm a big fan of graphics programming and that
 I used to write a lot of hobby projects on the topic (A DirectX 9 2d engine,
 a software renderer from scratch, etc).  Life is complex and for multiple
-reasons I've never worker professionally in the field, but my interest kept
+reasons I've never worked professionally in the field, but my interest kept
 there.
 
 Some days ago I got tired of writing docs for my next
 [tinyrefl](https://github.com/Manu343726/tinyrefl) release, and started to
-thinkabout a new hobby project to distract myself from my main project
+think about a new hobby project to distract me from my main project
 (*Yeah...*). So I pulled again my Amazon Kindle account and downloaded all
 "Raytracing In A Weekend" series by Peter Shirley.
 
 > For those of you new to this field, raytracing is a way of doing computer graphics where
-> scene ilumination is computed by simulating light rays across the scene,
+> scene illumination is computed by simulating light rays across the scene,
 > with complex light interactions such as reflection, refraction, etc.
-> This technique, in contrast with "rasterization" used in real time graphics,
+> This technique, in contrast with "rasterization" used in real-time graphics,
 > gives realistic images at the expense of long computation times.
 >
 > Peter Shirley books [are available online](https://github.com/petershirley/raytracinginoneweekend/) and
@@ -29,7 +29,7 @@ thinkabout a new hobby project to distract myself from my main project
 > implementation perspective.
 
 This was not the first time I read Shirley's books, but now I wanted to read
-the books in depth while working on my own implementation.
+the books in-depth while working on my own implementation.
 
 ## The implementation
 
@@ -39,11 +39,11 @@ hosted it [on github](https://github.com/Manu343726/raytracer).
 The project is organized as three different modules:
 
  - **A library with all the raytracing datatypes and math routines**: vector and
-   color algebra, rgb and hsv color maps, random generation, intersections,
+   color algebra, RGB and HSV color maps, random generation, intersections,
    etc.
  
  - **A lock-free job scheduler** to parallelize the rendering. A couple of
-   years ago I wrote an implementation of a lock-free work stealing task
+   years ago I wrote an implementation of a lock-free work-stealing task
    scheduler using C++11 atomics (blog post
    [here](https://manu343726.github.io/2017-03-13-lock-free-job-stealing-task-system-with-modern-c/)),
    and I thought that this project could be a good excuse to put such as thing
@@ -129,7 +129,7 @@ The project is organized as three different modules:
 
    Command line options override settings written in the configuration file, so
    testing different scenarios is really simple.  
-   For example, the following config file declares an scenario where the
+   For example, the following config file declares a scenario where the
    renderer uses all hardware threads available, the main thread has a job pool
    big enough to allocate all the `kernel()` jobs, all background threads have
    an empty job pool (All `kernel()` jobs are issued from the main thread), and
@@ -437,22 +437,22 @@ allocation and scheduling to more experienced people**.
 > condition variables, etc) **are not the right abstraction for
 > concurrency but implementation details.** [*Pedantic rant off*]
 
-In this specific case the goal of the system is to render multiple independent
+In this specific case, the goal of the system is to render multiple independent
 pixels, so from a pure logic point of view each pixel is an independent task.
 So, one task per pixel, throwing all the hard problems to the scheduler.
 
-Going back to the real world of *Implementing Things That Work (tm)* this
+Going back to the real world of *Implementing Things That Work (TM)* this
 approach is not optimal if for some reason your system takes more time playing
-ping-pong in the task scheduler than actually doing userful work. That happens
+ping-pong in the task scheduler than actually doing useful work. This happens
 if **the time to run each task is similar (or less) to the time it takes the
 scheduler to grab a pending task and posting it on a worker thread**.
 
-If you haven't read my post lock-free job stealing (or [the original
+If you haven't read my post lock-free job-stealing (or [the original
 post](https://blog.molecular-matters.com/2015/08/24/job-system-2-0-lock-free-work-stealing-part-1-basics/)
 by Stefan Reinalter) let me give you a brief explanation of how the job
 scheduler works:
 
- - The engine creates N - 1 background threads, and manages the current
+ - The engine creates N - 1 background threads and manages the current
  thread (The thread that creates the engine) as implicitly created.
 
  - Each thread has a memory pool to allocate jobs from that thread and
@@ -466,9 +466,9 @@ scheduler works:
 
  - Background threads pull jobs in a loop from their correspondent work
    queues. If the queue is empty, the thread tries to "steal" a job from
-   the queue of one of the other threads (randomnly).
+   the queue of one of the other threads (randomly).
 
- - If both the thread job queue the the other random job queue return nothing,
+ - If both the thread job queue the other random job queue return nothing,
    the thread yields (To avoid busy waits).
 
  - The foreground thread, the thread that created the engine, can execute
@@ -616,7 +616,7 @@ Total time   Self time       Calls  Function
 
 but note how `sched_yield()` only takes 362 milliseconds now, and other
 scheduler internal functions such as `JobQueue::steal()` or
-`JobQueue::pop()` take around 4 times less time running.
+`JobQueue::pop()` takes around 4 times less time running.
 
 To confirm my theory I rerun the all threads scenario but with 1000 iterations per
 pixel instead of 100. Since the mandelbrot kernel uses this iterations
@@ -658,7 +658,7 @@ This makes more sense, scheduler functions are at the bottom of the report and `
 
 ## Lessons learned
 
- - Always setup a new project so that it can easily debugged and profiled
+ - Always setup a new project so that it can easily be debugged and profiled
  from day one.
  - When writing code it's good to put quality over performance hacks, but
  never forget about profiling. In my experience it's easier to fall into
